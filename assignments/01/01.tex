@@ -1,0 +1,226 @@
+%	
+%	01.tex - Week 1, deadline on 3th of May 2013
+%	
+%	This document provides answers to the exercises and problems as defined by
+%	the course for the week shown below.
+%	
+%	Mandatory:	2-2
+%	Optional:	1.1-3, 1.1-5, 2.2-2, 2.3-4, 3.1-4, 3.2-7, 3-2
+%	Extras:		1.1-1, 1.1-2, 1.1-4
+%	
+
+\documentclass[11pt,english]{article}
+
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath,amssymb}	% for mathematical notation
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+
+%========== meta data ==========%
+
+\title
+{
+	Algorithms \& Datastructures\\
+	\huge Assignment 1
+}
+
+\author
+{
+	Casper B. Hansen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{fvx507@alumni.ku.dk}
+	\and
+	Hans J. T. Stephensen\\
+	\small Department of n00bs?\\
+	\small The University of Copenhagen\\
+	\texttt{xkv467@alumni.ku.dk}
+}
+
+\date{\today}
+
+
+%========== settings ==========%
+
+\setlength{\headheight}{15pt}
+\sectionfont{\large}
+
+
+%========== macros ==========%
+
+% no macros yet
+
+
+%========== document ==========%
+
+\begin{document}
+
+\maketitle
+
+%========== mandatory ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Mandatory Hand-ins}
+
+\subsection*{2-2}
+...
+
+
+%========== optional ==========%
+
+% no optional hand-ins
+
+
+%========== extras ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Extras}
+
+\subsection*{1-1 Comparison of running times}
+For each function $f(n)$ and time $t$, determine the size $n$ of a problem that can be solved in
+time $t$, assuming that the algorithm to solve the problem takes $f(n)$ microseconds.
+\\\\
+\small
+\begin{tabular}[]{|c|c|c|c|c|c|c|c|}
+	\hline
+	{\ } & 1 second & 1 minute & 1 hour & 1 day & 1 month & 1 year & 1 century\\
+	\hline
+	
+	lg$n$ & $2^{10^6}$ & $2^{10^6 \cdot 60}$ & $2^{10^6 \cdot 60^2}$ &
+	$2^{10^6 \cdot 60^2 \cdot 24}$ & $2^{10^6 \cdot 60^2 \cdot 24 \cdot 365}$ &
+	$2^{10^6 \cdot 60^2 \cdot 24 \cdot 365}$ &
+	$2^{10^6 \cdot 60^2 \cdot 24 \cdot 365 \cdot 100}$\\	
+	
+	$\sqrt{n}$ & . & . & . & . & . & . & .\\
+	
+	$n$ & . & . & . & . & . & . & .\\ 
+	
+	$n$lg$n$ & . & . & . & . & . & . & .\\ 
+	
+	$n^2$ & . & . & . & . & . & . & .\\ 
+	
+	$n^3$ & . & . & . & . & . & . & .\\ 
+	
+	$2^n$ & . & . & . & . & . & . & .\\ 
+	
+	$n$! & . & . & . & . & . & . & .\\ 
+	
+	\hline
+\end{tabular}
+
+%========== exercises ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Exercises}
+
+\subsection*{1.1-1 \mdseries Give a real-world example that requires sorting
+or a real-world example that requires computing a convex hull.}
+In a graphics engine that gives depth-perception, one will usually sort the
+objects in the scene according to their depth and draw the objects in that
+order, such that no object further away from another gets drawn on top of the
+latter object.
+
+% TODO: Convex hull example
+
+\subsection*{1.1-2 \mdseries Other than speed, what other measures of
+efficiency might one use in a real-world setting?}
+Apart from speed there are numerous other factors of efficiency to account for
+when writing an algorithm. Some of these factors may or may not be relevant for
+a particular case, but in general memory consumption is among the most
+prevalent concerns these days, even though memory has gotten quite large. The
+reason being that we still demand more and more of our computers, so this will
+likely always be an area of interest. Security is one of the most discussed
+topics of today, and this affects algorithm design as well (ie. one algorithm
+may expose vulnerabilities that another may account for).
+
+\subsection*{1.1-3 \mdseries Select a datastructure that you have seen
+previously, and discuss its strengths and weaknesses.}
+A linked list provides the advantage of fast manipulation (ie. insertion,
+deletion, etc.), but at the cost of search time. Using a regular array, since
+it is simply a pointer pointing at the address of the first block of the
+allocated area of memory, it is a trivial operation to read or write to any
+particular offset in memory of a regular array, either by indexing or pointer-
+arithmetic.
+
+This is not true for a linked list, as we have to search through the entire
+list (in the worse case) to find any particular index.
+
+\subsection*{1.1-4 \mdseries How are the shortest-path and traveling-salesman
+problems given above similar?}
+The similarity of the two problems are quite obvious. Given any routing
+problem, finding the shortest path will yield a faster route, for the
+traveling-salesman this means that we calculate the shortest intermediate
+paths for each destination, and make each destination a node of its own in a
+new graph, where we can then determine the shortest possible route through
+these whilst ending up in the starting position.
+
+\subsection*{1.1-5 \mdseries Come up with a real-world problem in which only
+the best solution will do. Then come up with one in which a solution that is
+"approximately" the best is good enough.}
+First rule of development is to make things work, then optimize. As such, we
+will usually be slobby in our algorithmic designs on the first iterations of
+any software project, and later optimize it for speed - this may or may not
+require the very best solution, but preferably it should be.
+
+For a concrete example; if part of a system deals with security, then it is
+imperative that the solution be carried out with the utmost care to every
+conceivable detail. This is a careful balance between usability, vulnerability
+and performance, and as such only the very best solution must be employed.
+
+Contrary to this are trivial parts of a system that doesn't directly deal with
+anything that is visible to the user of the system, or is affected by it
+during use of the system. Like an automated backup service, running in the
+background. The only thing to ensure here is that it performs its task
+accurately, but beyond that performance is not an issue - being a background
+task we would actually like it not to consume too much CPU time, so we may
+actually hinder it from taking up CPU-cycles when other user-owned processes
+are in need of system resources.
+
+\subsection*{2.2-1 \mdseries Express the function
+$n^3/1000 - 100n^2 - 100n + 3$ in terms of $\Theta$-notation.}
+With a bit of rearranging of the expression, we get
+\begin{align}
+	\frac{1}{1000} n^3 - 100n^2 - 100n + 3
+\end{align}
+and we then see that if we drop the leading constants, which doesn't make up
+any significant contribution to the overall growth of the function, we then
+get
+\begin{align}
+	n^3 - n^2 - n
+\end{align}
+We can now drop the lower order terms, as their growth are insignificant
+compared to the highest order term, and we end up with the answer
+\begin{align}
+	\Theta(n^3)
+\end{align}
+
+\subsection*{2.2-2 \mdseries Consider sorting $n$ numbers stored in array $A$
+by first finding the smallest element of $A$ and exchanging it with the
+element in $A[1]$. Then find the second smallest element of $A$, and exchange
+it with $A[2]$. Continue in this manner for the first $n-1$ elements of $A$.
+Write pseudocode for this algorithm, which is known as
+\textbf{selection sort}. What loop invariant does this algorithm maintain?
+Why does it need to run for only the first $n-1$ elements, rather than for all
+$n$ elements? Give the best-case and worst-case running times of selection
+sort in $\Theta$-notation.}
+...
+
+
+\subsection*{3.1-4 \mdseries ...}
+...
+
+\subsection*{3.2-7 \mdseries ...}
+...
+
+\subsection*{3-2 \mdseries ...}
+...
+
+
+\end{document}
+
