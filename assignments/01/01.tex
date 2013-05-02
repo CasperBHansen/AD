@@ -146,12 +146,6 @@ $i = 1$ on the first pass, the range isn't valid and therefore there can be
 no elements in the array, leaving us with an empty array, which is trivially
 sorted.
 \\\\
-\textbf{Maintainance} \mdseries As proved in (b), the inner for-loop pushes
-the minimum element toward the beginning of the array, such that
-$max{A[1 \dots i]} \leq min{A[i + 1 \dots n]}$. At the end of an iteration
-$max{A[1 \dots i - 1]} \leq min{A[i \dots n]}$ as proved in (b), ensuring that
-the loop invariant holds for all iterations.
-\\\\
 \textbf{Maintainance} \mdseries Assuming $ A[1] \leq A[2] \leq \cdots \leq 
 A[i-1] \leq min\{ A[i \cdots n] \}$ we want to show that after the iteration,
 $ A[1] \leq A[2] \leq \cdots \leq A[i-1] \leq A[i] \leq min\{ A[i+1 \cdots n]
