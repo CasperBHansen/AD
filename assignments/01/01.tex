@@ -6,7 +6,7 @@
 %	
 %	Mandatory:	2-2
 %	Optional:	1.1-3, 1.1-5, 2.2-2, 2.3-4, 3.1-4, 3.2-7, 3-2
-%	Extras:		1.1-1, 1.1-2, 1.1-4
+%	Extras:		1.1-1, 1.1-2, 1.1-4, 1.2-1, 1.2-2
 %	
 
 \documentclass[11pt,english]{article}
@@ -14,12 +14,13 @@
 \usepackage{fancyhdr}
 \usepackage{sectsty}
 \usepackage{amsmath,amssymb}	% for mathematical notation
-\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage[linesnumbered]{algorithm2e}
 
 %========== meta data ==========%
 
 \title
 {
+	\vspace{1in}
 	Algorithms \& Datastructures\\
 	\huge Assignment 1
 }
@@ -32,7 +33,7 @@
 	\texttt{fvx507@alumni.ku.dk}
 	\and
 	Hans J. T. Stephensen\\
-	\small Department of n00bs?\\
+	\small Department of Computer Science\\
 	\small The University of Copenhagen\\
 	\texttt{xkv467@alumni.ku.dk}
 }
@@ -55,7 +56,9 @@
 
 \begin{document}
 
+\clearpage
 \maketitle
+\thispagestyle{empty}
 
 %========== mandatory ==========%
 
@@ -64,7 +67,74 @@
 
 \section*{Mandatory Hand-ins}
 
-\subsection*{2-2}
+\subsection*{2-2 Correctness of bubblesort}
+Bubblesort is a popular, but inefficient, sorting algorithm. It works by
+repeatedly swapping elements that are out of order.
+\\\\
+\begin{algorithm}[H]
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwFunction{Exchange}{Exchange}
+	\SetKw{KwDownTo}{down to}
+	
+	\Input{An unsorted array $A$.}
+	\Output{A sorted array $A$ (sorts in place).}
+	\BlankLine
+	\For{$i = 1$ \KwTo $A.length - 1$}
+	{
+		\For{$j = A.length$ \KwDownTo $i + 1$}
+		{
+			\If{$A[j] > A[j-1]$}
+			{
+				exchange $A[j]$ with $A[j-1]$
+			}
+		}
+	}
+	\caption{Bubblesort}
+\end{algorithm}
+
+\subsubsection*{a. \mdseries Let $A'$ denote the output of bubblesort(A). To
+prove that bubblesort is correct, we need to prove that it terminates and that
+\[A'[1] \leq A'[2] \leq \dots \leq A'[n]\text{, where $n = A.length$.}\] To
+show that Bubblesort actually sorts, what else do we need to prove?}
+First, we must determine and state the loop invariant, and prove that this
+loop invariant holds during initialization phase (prior to the first iteration,
+that is), and that this remains true as maintained by the algorithm throughout
+the execution of each iteration of the loop, which is called the maintainance
+phase, until the termination phase.
+
+\subsubsection*{b. \mdseries State precisely a loop invariant for the
+\textbf{for} loop in lines 2-4, and prove that this loop invariant holds. Your
+proof should use the structure of the loop invariant proof presented in this
+chapter.}
+It holds that for any index $j$ the value of $A[j]$ is less than -or equal to,
+should duplicates occur in the sequence- any value in the range
+$A[j \dots A.length]$.
+\\\\
+\textbf{Initialization} \mdseries On entry the value of $j$ is equal to the
+length of the array $A$, that is $j = n$. The range $A[j \dots n]$ is
+trivially sorted, as it holds only one element, which is $A[j]$ - hence the
+loop invariant holds .
+\\\\
+\textbf{Maintainance} \mdseries ...
+\\\\
+\textbf{Termination} \mdseries The loop is terminated when $j = i$. That is,
+$j$ is decreased on every iteration of the loop, and when it gets to
+$j = i$ the for-loop then evaluates the condition to false and execution
+leaves the for-loop.
+
+At termination, as proved in maintainance, $A[j]$ holds
+$min{A[i \dots n]}$, placing the minimum element at
+$A[j - 1] = A[i + 1 - 1] = A[i]$. ... thereby something ..
+
+\subsubsection*{c. \mdseries Using the termination condition of the loop
+invariant proved in part (b), state a loop invariant for the \textbf{for} loop
+in lines 1-4 that will allow you to prove the inequality. Your proof should
+use the structure of the loop invariant proof presented in this chapter.}
+...
+
+\subsubsection*{d. \mdseries What is the worst-case running time of
+bubblesort? How does it compare to the running time of insertion sort?}
 ...
 
 
@@ -76,13 +146,12 @@
 %========== extras ==========%
 
 \newpage
-\pagestyle{fancy}
-
 \section*{Extras}
 
 \subsection*{1-1 Comparison of running times}
-For each function $f(n)$ and time $t$, determine the size $n$ of a problem that can be solved in
-time $t$, assuming that the algorithm to solve the problem takes $f(n)$ microseconds.
+For each function $f(n)$ and time $t$, determine the size $n$ of a problem
+that can be solved in time $t$, assuming that the algorithm to solve the
+problem takes $f(n)$ microseconds.
 \\\\
 \small
 \begin{tabular}[]{|c|c|c|c|c|c|c|c|}
@@ -95,7 +164,7 @@ time $t$, assuming that the algorithm to solve the problem takes $f(n)$ microsec
 	$2^{10^6 \cdot 60^2 \cdot 24 \cdot 365}$ &
 	$2^{10^6 \cdot 60^2 \cdot 24 \cdot 365 \cdot 100}$\\	
 	
-	$\sqrt{n}$ & . & . & . & . & . & . & .\\
+	$\sqrt{n}$ & $10^{12}$ & . & . & . & . & . & .\\
 	
 	$n$ & . & . & . & . & . & . & .\\ 
 	
@@ -181,6 +250,19 @@ accurately, but beyond that performance is not an issue - being a background
 task we would actually like it not to consume too much CPU time, so we may
 actually hinder it from taking up CPU-cycles when other user-owned processes
 are in need of system resources.
+
+\subsection*{1.2-1 \mdseries Give an example of an application that requires
+algorithmic content at the application level, and discuss the function of the
+algorithms involved.}
+Any application that sorts content, like say a photo application, will have
+at least one sorting algorithm (ie. sort by date, sort by location, etc.).
+In such an algorithm we would convert the data into a comparable type, like
+an integer, and sorting then becomes trivial.
+
+\subsection*{1.2-2 \mdseries Suppose we are comparing implementations of
+insertion sort and merge sort on the same machine. For inputs of size $n$,
+insertion sort runs in $8n^2$ steps, while merge sort runs in $64n$lg$n$
+steps. For which values of $n$ does insertion sort beat merge sort?}
 
 \subsection*{2.2-1 \mdseries Express the function
 $n^3/1000 - 100n^2 - 100n + 3$ in terms of $\Theta$-notation.}
