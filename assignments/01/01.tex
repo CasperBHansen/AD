@@ -116,8 +116,7 @@ length of the array $A$, that is $j = n$. The range $A[j \dots n]$ is
 trivially sorted, as it holds only one element, which is $A[j]$ - hence the
 loop invariant holds .
 \\\\
-\textbf{Maintainance} \mdseries By induction, we need to show, assuming
-$A[j] = min\{A[j \cdots n]\}$ holds, that after iteration, $A[j-1] = min\{
+\textbf{Maintainance} \mdseries By induction, we need to show, assuming $A[j] = min\{A[j \cdots n]\}$ holds, that after iteration, $A[j-1] = min\{
 A[j-1 \cdots n]\}$. During the body of the inner for loop, the if
 statement and its body ensures that $A[j-1] = min\{A[j-1],A[j]\}$ and $A[j] 
 = max\{A[j-1],A[j]\}$. Notice that the state of the array A is unchanged.
@@ -154,7 +153,6 @@ the loop invariant holds for all iterations.
 \\\\
 \textbf{Termination} \mdseries ...
 
-
 \subsubsection*{d. \mdseries What is the worst-case running time of
 bubblesort? How does it compare to the running time of insertion sort?}
 Usually one can deduce a rough notion of the running time by the amount of
@@ -163,6 +161,17 @@ is $\Theta(n^2)$.
 
 This is, however, not an accurate way of analysing the complexity of the
 algorithm - even though it may be true for this particular algorithm.
+
+The 'brute-force' way of analysing an algorithm is to determine the costs of
+each line in the algorithm and produce a formula of the summation of all of
+these costs. From this we can reduce the expression, using the rules from
+asympotic notation, and end up with the exact order it belongs to. Doing this
+we have that line 1 gets executed $n$ times, line 2 gets executed
+$?$ times, and in the worst case both of lines 3 and 4 gets executed [...]
+
+\begin{align}
+	c_1 n + c_2 \sum^{n - 1}_{j = 1}{j} + c_3 ? + c_4 ?
+\end{align}
 
 
 %========== optional ==========%
