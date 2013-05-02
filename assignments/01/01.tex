@@ -170,10 +170,10 @@ each line in the algorithm and produce a formula of the summation of all of
 these costs. From this we can reduce the expression, using the rules from
 asympotic notation, and end up with the exact order it belongs to. Doing this
 we have that line 1 gets executed $n$ times, line 2 gets executed
-$?$ times, and in the worst case both of lines 3 and 4 gets executed [...]
-
+$\sum^{n}_{j=1}{j}$ times, and in the worst case both of lines 3 and 4 gets
+executed $\sum^{n-1}_{j=1}{j}$ times, respectively.
 \begin{align}
-	T(n) &= c_1 n + c_2 \sum^{n - 1}_{j = 1}{j}
+	T(n) &= c_1 n + c_2 \sum^{n}_{j = 1}{j}
 	+ (c_3 + c_4)\sum^{n - 1}_{j = 1}{j}\\
 	&=
 	c_1 n + c_2 \frac{n(n + 1)}{2}
