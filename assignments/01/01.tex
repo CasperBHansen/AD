@@ -116,13 +116,13 @@ length of the array $A$, that is $j = n$. The range $A[j \dots n]$ is
 trivially sorted, as it holds only one element, which is $A[j]$ - hence the
 loop invariant holds .
 \\\\
-\textbf{Maintainance} \mdseries By induction, we need to show, asuming
+\textbf{Maintainance} \mdseries By induction, we need to show, assuming
 $A[j] = min\{A[j \cdots n]\}$ holds, that after iteration, $A[j-1] = min\{
 A[j-1 \cdots n]\}$. During the body of the inner for loop, the if
 statement and its body ensures that $A[j-1] = min\{A[j-1],A[j]\}$ and $A[j] 
 = max\{A[j-1],A[j]\}$. Notice that the state of the array A is unchanged.
-Further more, using the above $A[j-1] = min\{A[j-1],A[j]\} = min\{A[j-1],
-A[j \cdots n]\} = min\{A[j-1 \cdots n]\}$
+Furthermore, using the above $A[j-1] = min\{A[j-1],A[j]\} = min\{A[j-1],
+A[j \cdots n]\} = min\{A[j-1 \cdots n]\}$.
 \\\\
 \textbf{Termination} \mdseries The loop is terminated when $j = i$. That is,
 $j$ is decreased on every iteration of the loop, and when it gets to
