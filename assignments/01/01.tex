@@ -107,14 +107,15 @@ phase, until the termination phase.
 \textbf{for} loop in lines 2-4, and prove that this loop invariant holds. Your
 proof should use the structure of the loop invariant proof presented in this
 chapter.}
-It holds that for any index $j$ the value of $A[j]$ is less than -or equal to,
-should duplicates occur in the sequence- any value in the range
-$A[j \dots A.length]$.
+For the inner for-loop, we state the following loop-invariant.
+\begin{equation}
+A[j] = min\{A[j \cdots n]\}]
+\end{equation}
 \\\\
 \textbf{Initialization} \mdseries On entry the value of $j$ is equal to the
 length of the array $A$, that is $j = n$. The range $A[j \dots n]$ is
 trivially sorted, as it holds only one element, which is $A[j]$ - hence the
-loop invariant holds .
+loop invariant holds.
 \\\\
 \textbf{Maintainance} \mdseries By induction, we need to show, assuming $A[j]
 = min\{A[j \cdots n]\}$ holds, that after iteration, $A[j-1] = min\{
