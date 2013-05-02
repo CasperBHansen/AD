@@ -154,7 +154,10 @@ n] \} \leq min\{ A[i+1 \cdots n] \}$. Substituting into the above, we get $
 A[1] \leq A[2] \leq \cdots \leq A[i-1] \leq A[i] = min\{ A[i \cdots n] \} 
 \leq min\{ A[i+1 \cdots n] \}$. Which is what we wanted.
 \\\\
-\textbf{Termination} \mdseries ...
+\textbf{Termination} \mdseries The outer for-loop terminates with $i = n-1$,
+placing $min\{A[i \cdots n] = A[n-1 \cdots n]\}$ on place $A[i]$, ensuring 
+that $ A[1] \leq A[2] \leq \cdots \leq A[i] = A[n-1] \leq A[n]$. The array 
+is now sorted.
 
 \subsubsection*{\large d. \mdseries What is the worst-case running time of
 bubblesort? How does it compare to the running time of insertion sort?}
