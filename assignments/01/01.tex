@@ -44,7 +44,7 @@
 %========== settings ==========%
 
 \setlength{\headheight}{15pt}
-\sectionfont{\large}
+\sectionfont{\Large}
 
 
 %========== macros ==========%
@@ -93,7 +93,7 @@ repeatedly swapping elements that are out of order.
 	\caption{Bubblesort}
 \end{algorithm}
 
-\subsubsection*{a. \mdseries Let $A'$ denote the output of bubblesort(A). To
+\subsubsection*{\large a. \mdseries Let $A'$ denote the output of bubblesort(A). To
 prove that bubblesort is correct, we need to prove that it terminates and that
 \[A'[1] \leq A'[2] \leq \dots \leq A'[n]\text{, where $n = A.length$.}\] To
 show that Bubblesort actually sorts, what else do we need to prove?}
@@ -173,8 +173,26 @@ we have that line 1 gets executed $n$ times, line 2 gets executed
 $?$ times, and in the worst case both of lines 3 and 4 gets executed [...]
 
 \begin{align}
-	c_1 n + c_2 \sum^{n - 1}_{j = 1}{j} + c_3 ? + c_4 ?
+	T(n) &= c_1 n + c_2 \sum^{n - 1}_{j = 1}{j}
+	+ (c_3 + c_4)\sum^{n - 1}_{j = 1}{j}\\
+	&=
+	c_1 n + c_2 \frac{n(n + 1)}{2}
+	+ (c_3 + c_4)\frac{n(n - 1)}{2}\\
+	&=
+	c_1 n + c_2 \frac{1}{2} n^2 + c_2 \frac{1}{2} n +
+	(c_3 + c_4) \frac{1}{2} n^2 - (c_3 + c_4) \frac{1}{2} n \\
+	&=
+	(c_2 + c_3 + c_4) \frac{1}{2} n^2 +
+	(2 c_1 + c_2 - c_3 - c_4) \frac{1}{2} n
 \end{align}
+Notice that constant terms have been isolated, and according to asymptotic
+analysis leading constants are simply dropped. Furthermore the term $n^2$ is
+of higher order than $n$, and we can then conclude that $T(n) = O(n^2)$.
+
+Even in the best case both loops have to run exactly the same amount of times,
+from which we can then say that the lower bound is $T(n) = \Omega(n^2)$. And,
+since upper- and lower bound are asymptotically equal, then
+$T(n) = \Theta(n^2)$.
 
 
 %========== optional ==========%
