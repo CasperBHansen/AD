@@ -140,7 +140,11 @@ For the outer for-loop it holds that $A[1 \dots i-1]$ is sorted. That is
 $max{A[1 \dots i - 1]} \leq min{A[i \dots n]}$, and $A[1 \dots i-1]$ is
 in sorted order.
 \\\\
-\textbf{Initialization} \mdseries On entry $i = 1$, and 
+\textbf{Initialization} \mdseries On entry $i = 1$, and as the loop invariant
+states $A[1 \dots i - 1]$ should appear in sorted order. However, since
+$i = 1$ on the first pass, the range isn't valid and therefore there can be
+no elements in the array, leaving us with an empty array, which is trivially
+sorted.
 \\\\
 \textbf{Maintainance} \mdseries As proved in (b), the inner for-loop pushes
 the minimum element toward the beginning of the array, such that
