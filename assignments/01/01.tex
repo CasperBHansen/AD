@@ -129,22 +129,23 @@ $j$ is decreased on every iteration of the loop, and when it gets to
 $j = i$ the for-loop then evaluates the condition to false and execution
 leaves the for-loop.
 
-At termination, as proved in maintainance, $A[j]$ holds
-$min{A[i \dots n]}$, placing the minimum element at
-$A[j - 1] = A[i + 1 - 1] = A[i]$.
+At termination, as proved in maintainance, $A[j]$ holds $min{A[i \dots n]}$,
+placing the minimum element at $A[j - 1] = A[i + 1 - 1] = A[i]$.
 
 \subsubsection*{c. \mdseries Using the termination condition of the loop
 invariant proved in part (b), state a loop invariant for the \textbf{for} loop
 in lines 1-4 that will allow you to prove the inequality. Your proof should
 use the structure of the loop invariant proof presented in this chapter.}
-...
+For the outer for-loop it holds that $A[1 \dots i-1]$ is sorted. That is
+$max{A[1 \dots i - 1]} \leq min{A[i \dots n]}$, and $A[1 \dots i-1]$ is
+in sorted order.
 \\\\
 \textbf{Initialization} \mdseries On entry $i = 1$, and 
 \\\\
 \textbf{Maintainance} \mdseries As proved in (b), the inner for-loop pushes
 the minimum element toward the beginning of the array, such that
-$max{A[1 \dots i]} < min{A[i + 1 \dots n]}$. At the end of an iteration
-$max{A[1 \dots i - 1]} < min{A[i \dots n]}$ as proved in (b), ensuring that
+$max{A[1 \dots i]} \leq min{A[i + 1 \dots n]}$. At the end of an iteration
+$max{A[1 \dots i - 1]} \leq min{A[i \dots n]}$ as proved in (b), ensuring that
 the loop invariant holds for all iterations.
 \\\\
 \textbf{Termination} \mdseries ...
