@@ -78,8 +78,10 @@ R. Hoare:
 	\SetKwFunction{Exchange}{Exchange}
 	\SetKw{True}{true}
 	
-	\Input{An unsorted array (A), ... (p) and ... (r)}
-	\Output{...}
+	\Input{An unsorted array $A$, indices $p$ and $r$, denoting the starting-
+and ending points, respectively, of the array.}
+	\Output{An in-place balanced array $A$, returning an index into the array
+$A$ suitable as a pivot.}
 	\BlankLine
 	
 	$x = A[p]$\\
@@ -114,7 +116,7 @@ R. Hoare:
 11, 2, 6, 21\rangle$, showing the values of the array and auxiliary values
 after each iteration of the \texttt{while}-loop in lines 4-13.}
 \begin{figure}[h]
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}[h]{|c|c|c|c|c|}
 		
 		% header
 		\hline
@@ -144,6 +146,7 @@ after each iteration of the \texttt{while}-loop in lines 4-13.}
 	\end{tabular}
 	\caption{Observed values of Hoare Partition given the input as defined above.}
 \end{figure}
+Returns the index of $j$, which in this case is $j = 9$.
 
 \large
 \noindent The next three questions ask you to give a careful argument that the
