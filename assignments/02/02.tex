@@ -192,7 +192,12 @@ inequality.
 \subsubsection*{\large d. \mdseries Every element of $A[p \dots j]$ is less
 than or equal to every element of $A[j + 1 \dots r]$ when
 \texttt{Hoare-Partition} terminates.}
-...
+
+To help us prove this we state the following loop-invariant. \\
+
+At every iteration, after incrementing $i$ and decrementing $j$, but before 
+exchanging $A[i]$ and $A[j]$, every element in $A[p \cdots i-1]$ is less than
+\textit{x} and every element in $A[j+1 \cdots r]$ is greater than \textit{x}.
 
 \subsubsection*{\large e. \mdseries Rewrite the \texttt{Quicksort} procedure
 to use \texttt{Hoare-Partition}.}
