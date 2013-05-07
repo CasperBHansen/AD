@@ -199,6 +199,17 @@ At every iteration, after incrementing $i$ and decrementing $j$, but before
 exchanging $A[i]$ and $A[j]$, every element in $A[p \cdots i-1]$ is less than
 or equal \textit{x} and every element in $A[j+1 \cdots r]$ is greater than
 or equal \textit{x}.
+\\\\
+\noindent \textbf{Initialization}\\
+The subarray $A[p \dots i-1]$ is empty, and therefore there are no elements
+which satisfies the loop invariant since no comparison can be made. The same
+argument is true for $A[j+1 \dots r]$.
+\\\\
+\noindent \textbf{Maintenance}\\
+...
+\\\\
+\noindent \textbf{Termination}\\
+...
 
 \subsubsection*{\large e. \mdseries Rewrite the \texttt{Quicksort} procedure
 to use \texttt{Hoare-Partition}.}
