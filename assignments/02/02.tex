@@ -215,7 +215,12 @@ Assuming we are not on the last iteration $A[j]$ is exchanged with $A[i]$
 re-establishing the loop invariant\\
 \\\\
 \noindent \textbf{Termination}\\
-...
+If we consider the condition $i > j$ that has to be met for the
+\texttt{while}-loop to terminate, it follows that no exchange has been made,
+which, as proved in maintenance guarantees that
+$max\{A[p \dots j-1]\} \leq min\{A[j \dots r]\} > x$ in the prior iteration.
+As only the indices have been moved, in particular $j$ is decremented by one,
+and it then follows that $max\{A[p \dots j]\} \leq min\{A[j+1 \dots r]\}$
 
 \subsubsection*{\large e. \mdseries Rewrite the \texttt{Quicksort} procedure
 to use \texttt{Hoare-Partition}.}
