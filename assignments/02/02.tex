@@ -195,18 +195,24 @@ than or equal to every element of $A[j + 1 \dots r]$ when
 
 To help us prove this we state the following loop-invariant. \\
 
-At every iteration, after incrementing $i$ and decrementing $j$, but before 
-exchanging $A[i]$ and $A[j]$, every element in $A[p \cdots i-1]$ is less than
-or equal \textit{x} and every element in $A[j+1 \cdots r]$ is greater than
-or equal \textit{x}.
+At every iteration, prior to incrementing $i$ and decrementing $j$, every 
+element in $A[p \cdots i]$ is less than or equal \textit{x} and every 
+element in $A[j \cdots r]$ is greater than or equal \textit{x}.
 \\\\
 \noindent \textbf{Initialization}\\
-The subarray $A[p \dots i-1]$ is empty, and therefore there are no elements
+The subarray $A[p \dots i]$ is empty, and therefore there are no elements
 which satisfies the loop invariant since no comparison can be made. The same
-argument is true for $A[j+1 \dots r]$.
+argument is true for $A[j \dots r]$.
 \\\\
 \noindent \textbf{Maintenance}\\
-...
+Assuming $min\{A[j \cdots r]\} \geq x$. Every time $j$ is decremented 1, 
+either an element greater than or equal x has been added, not changing the 
+above relation, or $j$ does not decrement further because $A[j] \leq x$. \\
+Assuming $max\{A[p \cdots i]\} \leq x$. Every time $i$ is incremented 1, 
+either an element less than or equal $x$ has been added, not changing the 
+above relation, or $i$ does not increment further because $A[j] \geq x$. \\
+Assuming we are not on the last iteration $A[j]$ is exchanged with $A[i]$ 
+re-establishing the loop invariant\\
 \\\\
 \noindent \textbf{Termination}\\
 ...
