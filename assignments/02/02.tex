@@ -152,22 +152,27 @@ $A[p \dots r]$ contains at least two elements, prove the following:
 \normalsize
 
 \subsubsection*{\large b. \mdseries The indices $i$ and $j$ are such that we
-never access an element of $A$ outside the subarray $A[p \dots r$.}
+never access an element of $A$ outside the subarray $A[p \dots r]$.}
 
 I order to prove this, an arbitrary example with two cases is given. 
-Either two or more elements has been exchanged, or none has been exchanged at all. \\
+Either two or more elements has been exchanged, or none has been exchanged at
+all.\\
+
 \textbf{No elements exchanged}\\
-If no elements has been exchanged, we know that \textit{i} has passed all elements to
-the left of \textit{x} ending up at the index of \textit{x}. Likewise \textit{j} has 
-passed all elements to the right of \textit{x}, stopping at the index of \textit{x}. 
-Thus both \textit{i} and \textit{j} stops in this case. \\
+If no elements has been exchanged, we know that \textit{i} has passed all
+elements to the left of \textit{x} ending up at the index of \textit{x}.
+Likewise \textit{j} has passed all elements to the right of \textit{x},
+stopping at the index of \textit{x}. Thus both \textit{i} and \textit{j}
+stops in this case.\\
+
 \textbf{Elements exchanged}\\
-If elements has been exchanged, we do not need to say anything about the whereabouts 
-of \textit{x}. Say elements $a \geq x$ is met first by \textit{i} while $b \leq x$ is 
-met by \textit{j} and they are exchanged. Since $i<j$, \textit{i} and \textit{j} keeps
-increasing and decreasing respectively. At some point, \textit{i} meets \textit{a} and
-\textit{j} meets \textit{b} again and they both halt. The only way this can happen is 
-when $i>j$, forcing the program to terminate.
+If elements has been exchanged, we do not need to say anything about the
+whereabouts of \textit{x}. Say elements $a \geq x$ is met first by \textit{i}
+while $b \leq x$ is met by \textit{j} and they are exchanged. Since
+$i<j$, \textit{i} and \textit{j} keeps increasing and decreasing respectively.
+At some point, \textit{i} meets \textit{a} and \textit{j} meets \textit{b}
+again and they both halt. The only way this can happen is when $i>j$, forcing
+the program to terminate.
 
 \subsubsection*{\large c. \mdseries When \texttt{Hoare-Partition} terminates,
 it returns a value $j$ such that $p \leq j < r$.}
@@ -175,10 +180,11 @@ As the algorithm makes use of a \texttt{do-while}, rather than a regular
 \texttt{while}-loop, line 6 is guaranteed to run at least once, ensuring that
 $j < r$ after the first iteration, which proves the right hand side of the
 inequality. It follows naturally from the proof in (b) that $j$ will never
-exceed the bounds of the array $A$ and as such $p \leq j$ on terminatwhich proves the right hand side of the
-inequality. It follows naturally from the proof in (b) that $j$ will never
-exceed the bounds of the array $A$ and as such $p \leq j$ on termination,
-which proves the left hand side of the inequality. 
+exceed the bounds of the array $A$ and as such $p \leq j$ on terminat which
+proves the right hand side of the inequality. It follows naturally from the
+proof in (b) that $j$ will never exceed the bounds of the array $A$ and as
+such $p \leq j$ on termination, which proves the left hand side of the
+inequality. 
 
 \subsubsection*{\large d. \mdseries Every element of $A[p \dots j]$ is less
 than or equal to every element of $A[j + 1 \dots r]$ when \texttt{Hoare-
