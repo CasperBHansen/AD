@@ -1,0 +1,269 @@
+%	
+%	disposition.tex
+%	
+%	This document provides a summary of all of the exam question topics for
+%	the algorithms and datastructures course at the university of copenhagen
+%	department of computer science. It was written to serve as an excellent
+%	asset for the oral exam preparation, with most of the subtopics covered
+%	for any given exam topic in a concise and easily understandable format.
+%	
+
+\documentclass[11pt,english]{book}
+
+\usepackage{fancyhdr}						% page styling
+\usepackage{sectsty}						% section styling
+\usepackage{amsmath,amssymb}				% mathematical notation
+\usepackage[linesnumbered]{algorithm2e}		% algorithm pseudo-code
+
+%========== meta data ==========%
+
+\title
+{
+	\vspace{1in}
+	Algorithms \& Datastructures\\
+	\huge Disposition
+}
+
+\author
+{
+	Casper B. Hansen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{fvx507@alumni.ku.dk}
+	\and
+	Hans J. T. Stephensen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{xkv467@alumni.ku.dk}
+}
+
+\date{\today}
+
+
+%========== settings ==========%
+
+\setlength{\headheight}{15pt}
+\sectionfont{\Large}
+
+
+%========== macros ==========%
+
+\newcommand{\sethead}[3]{\lhead{#1}\chead{#2}\rhead{#3}}
+\newcommand{\setfeet}[3]{\lfoot{#1}\cfoot{#2}\rfoot{#3}}
+
+%========== document ==========%
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+
+%========== preamble ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\chapter*{Preamble}
+In this document we will discuss the most important principles of algorithms
+and datastructures in accordance with the syllabus of the course under the
+same title at the University of Copenhagen, Department of Computer Science.
+
+\section*{About the authors}
+We're a small group of Computer Science students, attending the course
+mentioned above at the time of writing this document as collaborative effort
+to make a great disposition for the course exam, that will both increase our
+own understanding of the subjects discussed as well as produce an invaluable
+resource for others attending the course, or who wish to learn about
+algorithms and datastructures in generel.
+
+\section*{Why we made this document}
+The document is was written in order to support our own understanding of the
+course contents as well as aid us during the exam preparation time.
+
+\section*{How to use this document}
+The intention of the document is \textit{not} to be a fullfledged introduction
+to algorithms and datastructure that you can just pick up and start learning
+from. As such it requires at least an accompanying book, or that you are
+attending lectures on the subject, or some other means that provide a base
+knowledge.
+
+The document is merely a tool for looking up things quickly, and defines the
+subjects in a concise manner, hence no in-depth discussion of any subject is
+to be found in this document. The sole purpose of the document is precisely
+that; a resource for quickly looking up the concepts discussed presented at
+lectures, or in a book.
+
+\section*{Recommendations}
+As far as we know the book \textit{Introduction to Algorithms} by Thomas H.
+Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, is pretty
+much the go-to choice if you want to study algorithms, and since this was our
+textbook during the course this is what we'll recommend for you.
+
+
+%========== Chapter 1 - Definitions ==========%
+
+\thispagestyle{fancyplain}
+
+\chapter{Definitions}
+\label{ch:definitions}
+In this chapter we will discuss the most important definitions of algorithms
+and datastructures.
+
+\section{Asymptotic Notation}
+\label{ch:definitions|sec:asymptotic-notation}
+The analysis of the growth of a function is called asymptotic analysis. The
+mathematical notation used to describe this analysis is called asymptotic
+notation.
+
+\subsection{$O$}
+\label{ch:definitions|sec:asymptotic-notation|sub:big-o}
+Defines a tight upperbounded growth of a function. That is, $O(n)$ is
+analogous to the comparison $\leq$.
+
+\subsection{$o$}
+\label{ch:definitions|sec:asymptotic-notation|sub:little-o}
+...
+
+\subsection{$\Omega$}
+\label{ch:definitions|sec:asymptotic-notation|sub:big-omega}
+...
+
+\subsection{$\omega$}
+\label{ch:definitions|sec:asymptotic-notation|sub:litte-omega}
+...
+
+\subsection{$\Theta$}
+\label{ch:definitions|sec:asymptotic-notation|sub:theta}
+...
+
+\section{Loop Invariant}
+\label{ch:definitions|sec:loop-invariant}
+A loop invariant is based on the notion of mathematical induction, as it
+provides a proof of the algorithms correctness in all three of its executed
+stages; initialization, maintenance and termination.
+
+When we want to prove an algorithms correctness, we state a loop invariant,
+which must hold throughout the duration of its execution, and should yield
+useful information for us to prove that the algorithm terminates correctly.
+
+\subsection{Initialization}
+...
+
+\subsection{Maintenance}
+...
+
+\subsection{Termination}
+...
+
+\section{Summary}
+\label{ch:definitions|sec:asymptotic-notation|sec:summary}
+% TODO: list the definitions in a table
+
+%========== Exam Topic 1 - Divide & Conquer ==========%
+
+\chapter{Divide \& Conquer}
+\label{ch:divideandconquer}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Exam Topic 2 - Priority Queues ==========%
+
+\chapter{Priority Queues}
+\label{ch:priorityqueyes}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Exam Topic 3 - Balanced Search B-Trees ==========%
+
+\chapter{Balanced Binary Search Trees}
+\label{ch:bbstrees}
+
+\textbf{Relevant Assignment} Week 2, Problem 7-1
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Chapter 4 - Dynamic Programming ==========%
+
+\chapter{Dynamic Programming}
+\label{ch:dynamicprog}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Chapter 5 - Greedy Algorithms ==========%
+
+\chapter{Greedy Algorithms}
+\label{ch:greedyalg}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Chapter 6 - Amortized Complexity ==========%
+
+\chapter{Amortized Complexity}
+\label{ch:amortized}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Chapter 7 - Minimum Spanning Tree ==========%
+
+\chapter{Minimum Spanning Trees}
+\label{ch:minspantree}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== Chapter 8 - Shortest Path Algorithms ==========%
+
+\chapter{Shortest Path Algorithms}
+\label{ch:shortestpath}
+
+\textbf{Relevant Assignment} Week ?, Problem ?-?
+\vspace{0.38in}
+
+\noindent Lorem ipsum dollar ...
+
+
+%========== bibliography ==========%
+
+\newpage
+
+\sethead{}{Bibliography}{}
+
+\begin{thebibliography}{9}
+\label{bibliography}
+
+\bibitem{lamport94}
+  Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein\\
+  \textit{Introduction to Algorithms}\\
+  MIT Press, 3rd. Edition, 2009\\
+
+\end{thebibliography}
+
+
+\end{document}
+
