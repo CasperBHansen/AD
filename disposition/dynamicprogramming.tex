@@ -12,10 +12,18 @@ dynamic programming to be a viable solution; optimal substructure and
 overlapping subproblems.
 \\\\
 \noindent \textbf{Optimal Substructure}\\
-... % p. 379
+% p. 379
+...
 \\\\
 \noindent \textbf{Overlapping Subproblems}\\
-... % p. 384
+% p. 384 - TODO: make this more concise
+When a recursive algorithm revisits the same problem repeatedly, we say that
+the optimization problem has \textit{overlapping subproblems}. That is, we
+solve the same subproblems, rather than generating new subproblems. In
+contrast to the divide and conquer technique, where we generate and solve new
+subproblems that are smaller instances of the same type of problem, in dynamic
+programming we solve each subproblem once, and then storing the solution in a
+table, where it can be looked up when needed in $\Theta(1)$ time.
 
 \newpage
 \section{Discovering Optimal Substructure}
@@ -67,4 +75,9 @@ When solving a particular subproblem, we have already solved all of the
 smaller subproblems its solution depends upon, and we saved their solutions.
 We solve each subproblem only once, and when we first see it, we have already
 solved all of its prerequisite subproblems.
+
+\newpage
+\section{Running Time Analysis}
+% p. 380-381
+...
 
