@@ -1,0 +1,116 @@
+%	
+%	solution.tex - Week 3, deadline on 17th of May 2013
+%	
+%	This document provides answers to the exercises and problems as defined by
+%	the course for the week shown below.
+%	
+%	Mandatory:	15-2
+%	Optional:	...
+%	Extras:		...
+%	
+
+\documentclass[11pt,english]{article}
+
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath,amssymb}	% for mathematical notation
+\usepackage[linesnumbered]{algorithm2e}
+
+%========== meta data ==========%
+
+\title
+{
+	\vspace{1in}
+	Algorithms \& Datastructures\\
+	\huge Assignment 3
+}
+
+\author
+{
+	Casper B. Hansen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{fvx507@alumni.ku.dk}
+	\and
+	Hans J. T. Stephensen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{xkv467@alumni.ku.dk}
+}
+
+\date{\today}
+
+
+%========== settings ==========%
+
+\setlength{\headheight}{15pt}
+\sectionfont{\Large}
+
+
+%========== macros ==========%
+
+% no macros yet
+
+
+%========== document ==========%
+
+\begin{document}
+
+\clearpage
+\maketitle
+\thispagestyle{empty}
+
+%========== mandatory ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Mandatory Hand-ins}
+
+\subsection*{15-2 Longest Palindrome Subsequence}
+\large{A palindrome is a nonempty string over some alphabet that reads the
+forward and backward. Examples of palindromes are all strings of length 1,
+\textit{civic}, \textit{racecar}, and \textit{aibohphobia} (fear of
+palindromes).
+
+Give an efficient algorithm to find the longest palindrome that is a
+subsequence of a given input string. For example, given the input
+\texttt{character}, your algorithm should return \texttt{carac}. What is the
+running time of your algorithm?}
+
+\subsubsection*{Algorithm}
+We will regard the input string $S$ as an object that provides us with a
+\texttt{length} method. That is, calling this method on the string object
+returns the length of the string, just as it would if it was an array.
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\Input{Takes a string $S$}
+	\Output{...}
+	\BlankLine
+	\Return 0
+	
+\end{algorithm}
+
+\subsubsection*{Analysis}
+...
+
+%========== optional ==========%
+
+% no optional hand-ins
+
+
+%========== extras ==========%
+
+% no extra hand.ins
+
+%========== exercises ==========%
+
+% \newpage
+% \pagestyle{fancy}
+% \section*{Exercises}
+% ...
+
+\end{document}
+
