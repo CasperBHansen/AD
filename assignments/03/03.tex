@@ -79,22 +79,49 @@ subsequence of a given input string. For example, given the input
 running time of your algorithm?}
 
 \subsubsection*{Algorithm}
-We will regard the input string $S$ as an object that provides us with a
-\texttt{length} method. That is, calling this method on the string object
-returns the length of the string, just as it would if it was an array.
+We will regard the input sequence $S$ as an object that provides us with a
+\texttt{length} method. That is, calling this method on the sequence object
+returns the length of the sequence, just as it would if it was an array.
+
+We shall assume that we have access to an \texttt{LCS} procedure, as given in
+the CLRS book, pages 394-395, with the minor difference being that we assume
+it to return the actual sequence being computed by it, rather than what it
+actually does in the books version of the algorithm.
+
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
+	\SetKwFunction{LCS}{LCS}
+	\SetKw{KwDownTo}{down to}
 	
-	\Input{Takes a string $S$}
-	\Output{...}
+	\Input{Takes a sequence $S$ of characters.}
+	\Output{The longest palindrome subsequence of the input sequence.}
 	\BlankLine
-	\Return 0
+	
+	let $R\langle1,\dots,S.length\rangle$ be a new sequence\\ % O(1)
+	
+	\For{i = 0 \KwTo $S.length - 1$} % O(n)
+	{
+		$R[S.length - i] = S[i]$
+	}
+	\Return \LCS(S, R) % O(mn), but m = n, therefore O(n^2)
 	
 \end{algorithm}
 
 \subsubsection*{Analysis}
-...
+On line 1 we spend constant time $\Theta(1)$ creating a new sequence $R$ of
+the same length as the input sequence $S$. The following lines 2-4 iterates
+over the entire length of the sequence, copying each element from $S$ over
+into the new sequence $R$, but in reverse order, this takes $\Theta(n)$ - we
+are guaranteed that the \texttt{for}-loop iterates exactly $n$ times, since 
+there are no exit conditions within the loop body, justifying the tight bound. As described in the book, the \texttt{LCS} procedure takes $\Theta(mn)$, but
+since $R.length = S.length$ then $m = n$ and therefore we spend $\Theta(n^2)$
+time on line 5, which also returns the answer.
+
+We therefore have that our algorithm runs a grand total of $T(n) =
+\Theta(n^2) + \Theta(n) + \Theta(1) = \Theta(n^2)$. The naive method would be
+to compare all subsequences, which would take exponential time, therefore we
+claim that our algorithm is "effective" compared to the bruteforce method.
 
 %========== optional ==========%
 
