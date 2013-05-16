@@ -11,6 +11,7 @@
 
 \documentclass[11pt,english]{article}
 
+\usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{sectsty}
 \usepackage{amsmath,amssymb}	% for mathematical notation
@@ -88,40 +89,71 @@ the CLRS book, pages 394-395, with the minor difference being that we assume
 it to return the actual sequence being computed by it, rather than what it
 actually does in the books version of the algorithm.
 
+Furthermore, we also assume that we have access to the simple math functions
+\texttt{Floor} and \texttt{Ceil}, and a helper function \texttt{Reverse} that
+we will regard as taking $\Theta(n)$ as it simply copies elements from one
+sequence into another.
+
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
+	\SetKwFunction{Reverse}{Reverse}
 	\SetKwFunction{LCS}{LCS}
+	\SetKwFunction{Floor}{Floor}
+	\SetKwFunction{Ceil}{Ceil}
 	\SetKw{KwDownTo}{down to}
 	
 	\Input{Takes a sequence $S$ of characters.}
 	\Output{The longest palindrome subsequence of the input sequence.}
 	\BlankLine
 	
-	let $R\langle1,\dots,S.length\rangle$ be a new sequence\\ % O(1)
+	$R =$ \Reverse($S$)\\
+	$s =$ \LCS($S$, $R$)\\
+	$l =$ $s$.length / 2\\
+	Let $out$ be a new string
 	
-	\For{i = 0 \KwTo $S.length - 1$} % O(n)
+	Copy $s[1 \dots l]$ into $out$\\
+	\If{l > \Floor(l)}
 	{
-		$R[S.length - i] = S[i]$
+		i = \Ceil(l)\\
+		Append $s_i$ to $out$
 	}
-	\Return \LCS(S, R) % O(mn), but m = n, therefore O(n^2)
+	Append $s[l+1 \dots s\text{.length}]$
 	
+	\Return $out$	
 \end{algorithm}
 
 \subsubsection*{Analysis}
-On line 1 we spend constant time $\Theta(1)$ creating a new sequence $R$ of
-the same length as the input sequence $S$. The following lines 2-4 iterates
-over the entire length of the sequence, copying each element from $S$ over
-into the new sequence $R$, but in reverse order, this takes $\Theta(n)$ - we
-are guaranteed that the \texttt{for}-loop iterates exactly $n$ times, since 
-there are no exit conditions within the loop body, justifying the tight bound. As described in the book, the \texttt{LCS} procedure takes $\Theta(mn)$, but
-since $R.length = S.length$ then $m = n$ and therefore we spend $\Theta(n^2)$
-time on line 5, which also returns the answer.
+During initialization of the internal variables within the algorithm we spend
+$\Theta(n)$ on reversing the original string $S$ and storing it in $R$ on line
+1, the following line 2 utilizes the \texttt{LCS} function, which contributes
+$\Theta(mn)$, but since our inputs are equal in size, that is $m = n$, it then
+becomes $\Theta(n^2)$. On line 3 we spend constant time $\Theta(1)$
+calculating the floor of the length of the longest common subsequence $s$ over
+2. We then spend $\Theta(n)$ on copying the first half of $s$ into the $out$
+sequence, and then if the sequence $s$ is of unequal length we add the
+following symbol of the sequence $s$ to $out$, and lastly we copy the first
+half of $s$ as already copied, but in reverse order to $out$.
 
-We therefore have that our algorithm runs a grand total of $T(n) =
-\Theta(n^2) + \Theta(n) + \Theta(1) = \Theta(n^2)$. The naive method would be
-to compare all subsequences, which would take exponential time, therefore we
-claim that our algorithm is "effective" compared to the bruteforce method.
+We then have that $T(n) = \Theta(n^2) + \Theta(2n) + \Theta(1) = \Theta(n^2)$.
+
+\subsubsection*{Proof}
+Since the \texttt{LCS} procedure calculates the longest subsequence, and that
+the longest subsequence of a sequence $S$ and its reverse $R$ must contain all
+the symbols of all the contributing parts of a \textit{LPS} (longest
+palindromic subsequence), we can then argue that the first half, including any
+middle symbol in odd-numbered sequence must be valid for the first half.
+
+The problem that arises, and that we must argue we have resolved in our
+algorithm, is that the \texttt{LCS} of $S$ and $R$, as defined above, won't
+necessarily be an \textit{LPS}, but since the path in the matrix should be
+symmetric we can argue that if we trace back through the first half we have
+already added, then the reverse of those must inevitably be a path to be found
+in the matrix moving forward from this middle symbol. From this, we claim that
+it is simply a matter of copying the reverse of the first half onto the out
+(excluding the middle symbol), and this gives us the \textit{LPS}, the desired
+result.
+
 
 %========== optional ==========%
 
