@@ -140,8 +140,8 @@ We then have that $T(n) = \Theta(n^2) + \Theta(2n) + \Theta(1) = \Theta(n^2)$.
 \subsubsection*{Proof}
 Since the \texttt{LCS} procedure calculates the longest subsequence, and that
 the longest subsequence of a sequence $S$ and its reverse $R$ must contain all
-the symbols of all the contributing parts of a \textit{LPS} (longest
-palindromic subsequence), we can then argue that the first half, including any
+the symbols of all the contributing parts of a \textit{LPS}\footnote{longest
+palindromic subsequence}, we can then argue that the first half, including any
 middle symbol in odd-numbered sequence must be valid for the first half.
 
 The problem that arises, and that we must argue we have resolved in our
