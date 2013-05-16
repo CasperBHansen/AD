@@ -138,21 +138,31 @@ half of $s$ as already copied, but in reverse order to $out$.
 We then have that $T(n) = \Theta(n^2) + \Theta(2n) + \Theta(1) = \Theta(n^2)$.
 
 \subsubsection*{Proof}
-Since the \texttt{LCS} procedure calculates the longest subsequence, and that
-the longest subsequence of a sequence $S$ and its reverse $R$ must contain all
-the symbols of all the contributing parts of a \textit{LPS}\footnote{longest
-palindromic subsequence}, we can then argue that the first half, including any
-middle symbol in odd-numbered sequence must be valid for the first half.
+%Since the \texttt{LCS} procedure calculates the longest subsequence, and that
+%the longest subsequence of a sequence $S$ and its reverse $R$ must contain all
+%the symbols of all the contributing parts of a \textit{LPS}\footnote{longest
+%palindromic subsequence}, we can then argue that the first half, including any
+%middle symbol in odd-numbered sequence must be valid for the first half.
+%
+%The problem that arises, and that we must argue we have resolved in our
+%algorithm, is that the \texttt{LCS} of $S$ and $R$, as defined above, won't
+%necessarily be an \textit{LPS}, but since the path in the matrix should be
+%symmetric we can argue that if we trace back through the first half we have
+%already added, then the reverse of those must inevitably be a path to be found
+%in the matrix moving forward from this middle symbol. From this, we claim that
+%it is simply a matter of copying the reverse of the first half onto the out
+%(excluding the middle symbol), and this gives us the \textit{LPS}, the desired
+%result.
 
-The problem that arises, and that we must argue we have resolved in our
-algorithm, is that the \texttt{LCS} of $S$ and $R$, as defined above, won't
-necessarily be an \textit{LPS}, but since the path in the matrix should be
-symmetric we can argue that if we trace back through the first half we have
-already added, then the reverse of those must inevitably be a path to be found
-in the matrix moving forward from this middle symbol. From this, we claim that
-it is simply a matter of copying the reverse of the first half onto the out
-(excluding the middle symbol), and this gives us the \textit{LPS}, the desired
-result.
+Assume that there exists no path in the matrix, as calculated by \texttt{LCS},
+such that reversed sequence $R$ of the first half of a sequence $S$ is a legal
+path option, as defined by the \texttt{LCS} procedure. Since the input
+sequences are each others inverse, then the matrix must be symmetrical, and
+this contradicts our assumption. Therefore, any valid half of the \texttt{LCS}
+must have a symmetric inverse path, and for odd-numbered length sequences,
+since any sequence of length 1 is a palindrome in and of itself, then
+stitching it in-between the previously mentioned must still yield a valid
+palindromic subsequence.
 
 
 %========== optional ==========%
