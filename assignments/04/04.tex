@@ -1,0 +1,140 @@
+%	
+%	solution.tex - Week 4, deadline on 24th of May 2013
+%	
+%	This document provides answers to the exercises and problems as defined by
+%	the course for the week shown below.
+%	
+%	Mandatory:	16-1
+%	Optional:	...
+%	Extras:		...
+%	
+
+\documentclass[11pt,english]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath,amssymb}	% for mathematical notation
+\usepackage[linesnumbered]{algorithm2e}
+
+%========== meta data ==========%
+
+\title
+{
+	\vspace{1in}
+	Algorithms \& Datastructures\\
+	\huge Assignment 4
+}
+
+\author
+{
+	Casper B. Hansen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{fvx507@alumni.ku.dk}
+	\and
+	Hans J. T. Stephensen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{xkv467@alumni.ku.dk}
+}
+
+\date{\today}
+
+
+%========== settings ==========%
+
+\setlength{\headheight}{15pt}
+\sectionfont{\Large}
+
+
+%========== macros ==========%
+
+% no macros yet
+
+
+%========== document ==========%
+
+\begin{document}
+
+\clearpage
+\maketitle
+\thispagestyle{empty}
+
+%========== mandatory ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Mandatory Hand-ins}
+
+\subsection*{16-1 Coin Changing}
+\large{Consider the problem of making change for $n$ cents using the fewest
+number of coins. Assume that each coin's value is an integer.}
+
+\subsubsection*{Algorithm}
+\large{Describe a greedy algorithm to make change consisting of quarters,
+dimes, nickels, and pennies. Prove that your algorithm yields an optimal
+solution.}
+...
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKw{KwDownTo}{down to}
+	
+	\Input{...}
+	\Output{...}
+	\BlankLine
+	
+	\Return $0$	
+\end{algorithm}
+...
+
+\subsubsection*{Proving a special case}
+\large{Suppose that the available coins are in the denominations that are
+powers of $c$, i.e., the denominations are $c^0$, $c^1$,\dots, $c^k$ for
+some integers $c > 1$ and $k \geq 1$. Show that the greedy algorithm
+always yields an optimal solution.}
+...
+
+\subsubsection*{A set that fails}
+\large{Give a set of coin denominations for which the greedy algorithm
+does not yield an optimal solution. Your set should include a penny, so
+that there is a solution for every value of $n$.}
+...
+
+\subsubsection*{An $O(nk)$-time algorithm}
+\large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
+different coin denominations, assuming that one of the coins is a penny.}
+...
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKw{KwDownTo}{down to}
+	
+	\Input{...}
+	\Output{...}
+	\BlankLine
+	
+	\Return $0$	
+\end{algorithm}
+...
+
+%========== optional ==========%
+
+% no optional hand-ins
+
+
+%========== extras ==========%
+
+% no extra hand.ins
+
+%========== exercises ==========%
+
+% \newpage
+% \pagestyle{fancy}
+% \section*{Exercises}
+% ...
+
+\end{document}
+
