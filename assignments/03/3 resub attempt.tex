@@ -1,4 +1,4 @@
-%  
+%	
 %	solution.tex - Week 3, deadline on 17th of May 2013
 %	
 %	This document provides answers to the exercises and problems as defined by
@@ -124,7 +124,7 @@ This gives us the naive recursive algorithm
 \end{algorithm}
 
 \noindent
-The above pseudo-code can be proven to run in exponential time, which is easily observed by noticing that the number of subproblems doubles at every recursive call, since we do not know which of $pal\_1$ and $pal\_2$ is the longest before doing the computation. Instead we can use dynamic programming a memorization or, as we will now, do a bottoms up approach.
+The above pseudo-code can be proven to run in exponential time, which is easily observed by noticing that the number of subproblems doubles at every recursive call, since we do not know which of $pal\_1$ and $pal\_2$ is the longest before doing the computation, and that the size of the subproblems only decreases by one. Instead we can use dynamic programming a memorization or, as we will now, do a bottoms up approach.
 
 \subsubsection*{Using dynamic programming}
 
@@ -155,3 +155,4 @@ Having calculated LSP(S), we know that each substring of length $l$ less than th
 % ...
 
 \end{document}
+
