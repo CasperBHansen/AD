@@ -1,0 +1,157 @@
+%  
+%	solution.tex - Week 3, deadline on 17th of May 2013
+%	
+%	This document provides answers to the exercises and problems as defined by
+%	the course for the week shown below.
+%	
+%	Mandatory:	15-2
+%	Optional:	...
+%	Extras:		...
+%	
+
+\documentclass[11pt,english]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{amsmath,amssymb}	% for mathematical notation
+\usepackage[linesnumbered]{algorithm2e}
+
+%========== meta data ==========%
+
+\title
+{
+	\vspace{1in}
+	Algorithms \& Datastructures\\
+	\huge Assignment 3
+}
+
+\author
+{
+	Casper B. Hansen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{fvx507@alumni.ku.dk}
+	\and
+	Hans J. T. Stephensen\\
+	\small Department of Computer Science\\
+	\small The University of Copenhagen\\
+	\texttt{xkv467@alumni.ku.dk}
+}
+
+\date{\today}
+
+
+%========== settings ==========%
+
+\setlength{\headheight}{15pt}
+\sectionfont{\Large}
+
+
+%========== macros ==========%
+
+% no macros yet
+
+
+%========== document ==========%
+
+\begin{document}
+
+\clearpage
+\maketitle
+\thispagestyle{empty}
+
+%========== mandatory ==========%
+
+\newpage
+\pagestyle{fancy}
+
+\section*{Mandatory Hand-ins}
+
+\subsection*{15-2 Longest Palindrome Subsequence}
+\large{A palindrome is a nonempty string over some alphabet that reads the
+forward and backward. Examples of palindromes are all strings of length 1,
+\textit{civic}, \textit{racecar}, and \textit{aibohphobia} (fear of
+palindromes).
+
+Give an efficient algorithm to find the longest palindrome that is a
+subsequence of a given input string. For example, given the input
+\texttt{character}, your algorithm should return \texttt{carac}. What is the
+running time of your algorithm?}
+
+\subsubsection*{Algorithm}
+
+We notice, that the problem of finding the Longest Substring Palindrome ($LSP$), can be solved recursively by noticing the following. \\
+On a string $S$ og length $n$ and $LSP(S) = P$: \\
+if
+\begin{align*}
+S[1] = S[n]
+\end{align*}
+then
+\begin{align*}
+LSP(S) = S[1], LSP(S[2, \cdots , n-1]), S[1]
+\end{align*}
+else
+\begin{align*}
+LSP(S) = maxLength\{ LSP(S[1 \cdots n-1], S[2 \cdots n]) \}
+\end{align*}
+
+\noindent
+This gives us the naive recursive algorithm
+
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwFunction{Reverse}{Reverse}
+	\SetKwFunction{LSP}{LSP}
+	\SetKwFunction{Floor}{Floor}
+	\SetKwFunction{Ceil}{Ceil}
+	\SetKw{KwDownTo}{down to}
+	
+	\Input{Takes a sequence $S$ of characters.}
+	\Output{The longest palindrome subsequence of the input sequence.}
+	\BlankLine
+	
+	$len = $length(S) \\
+	\If{S[1] = S[len-1]}
+	{   
+	    out = S[1], LSP(S[$2 \cdots n-1$]), S[1] \\
+		\Return out
+	}	
+	$pal\_1 =$ LSP(S[$1 \cdots n-1$]) \\
+	$pal\_2 =$ LSP(S[$2 \cdots n$) \\
+	\Return longest(pal\_1, pal\_2)
+\end{algorithm}
+
+\noindent
+The above pseudo-code can be proven to run in exponential time, which is easily observed by noticing that the number of subproblems doubles at every recursive call, since we do not know which of $pal\_1$ and $pal\_2$ is the longest before doing the computation. Instead we can use dynamic programming a memorization or, as we will now, do a bottoms up approach.
+
+\subsubsection*{Using dynamic programming}
+
+We notice that we in the pseudocode above, need to compute overlapping subproblems of of all the subarrays of S. Looking at the smallest substrings $LSP(S[i]) \mid i \in {1,\cdots, n}$ it is trivially a palindrome. Going to the case of more than one object LSP(S[$i \cdots k$]). Since we do the calculations in the bottoms up fashion, we have already calculated LSP(S[$i \cdots k-1$]) and LSP(S[$i+1 \cdots k$]). Each LSP call is constant. Making the analysis easy.
+
+\subsubsection*{Analysis}
+
+Having calculated LSP(S), we know that each substring of length $l$ less than the length of S, is called $l$ times more. So that when we do the trivial calculation of size 1, we have n of these calls. Thus the number of LSP calls is always (best or worse case) given by the sum
+\begin{align*}
+\sum_{i = 1}^n i &= \frac{n(n+1)}{2} \\
+&= \Theta(n^2)
+\end{align*}
+
+%========== optional ==========%
+
+% no optional hand-ins
+
+
+%========== extras ==========%
+
+% no extra hand.ins
+
+%========== exercises ==========%
+
+% \newpage
+% \pagestyle{fancy}
+% \section*{Exercises}
+% ...
+
+\end{document}
