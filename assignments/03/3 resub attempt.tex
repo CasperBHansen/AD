@@ -112,15 +112,15 @@ This gives us the naive recursive algorithm
 	\Output{The longest palindrome subsequence of the input sequence.}
 	\BlankLine
 	
-	$len = $length(S) \\
-	\If{S[1] = S[len-1]}
+	$n = $ S.length $-1$ \tcp{the end of the array}
+	\If{S[1] = S[n]}
 	{   
 	    out = S[1], LSP(S[$2 \cdots n-1$]), S[1] \\
 		\Return out
 	}	
-	$pal_1 =$ LSP(S[$1 \cdots n-1$]) \\
-	$pal_2 =$ LSP(S[$2 \cdots n$]) \\
-	\Return longest($pal_1$, $pal_2$)
+	$pal\_1 =$ LSP(S[$1 \cdots n-1$]) \\
+	$pal\_2 =$ LSP(S[$2 \cdots n$) \\
+	\Return longest(pal\_1, pal\_2)
 \end{algorithm}
 
 \noindent
