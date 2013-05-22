@@ -71,12 +71,12 @@
 \subsection*{16-1 Coin Changing}
 \large{Consider the problem of making change for $n$ cents using the fewest
 number of coins. Assume that each coin's value is an integer.}
+\\\\
+\noindent \large{\textbf{a} \mdseries Describe a greedy algorithm to make
+change consisting of quarters, dimes, nickels, and pennies. Prove that your
+algorithm yields an optimal solution.}
 
 \subsubsection*{Algorithm}
-\large{Describe a greedy algorithm to make change consisting of quarters,
-dimes, nickels, and pennies. Prove that your algorithm yields an optimal
-solution.}
-
 \noindent We will assume that the sequence $S$ given in the following
 algorithm is sorted in decreasing order before being passed as an
 argument. Should we need to make up for this assumption, ... yada yada
@@ -93,8 +93,8 @@ denotes the denominator by its index in $S$, and the second element denotes
 the amount required of that coin denominator.}
 	\BlankLine
 	
-	$k = 1$
-	$c = 0$
+	$k = 1$\\
+	$c = 0$\\
 	Let $A$ be a new list
 	
 	\While{$k < S$.length}
@@ -116,14 +116,43 @@ the amount required of that coin denominator.}
 	
 	\Return $A$	
 \end{algorithm}
-...
 
-\subsubsection*{Proving a special case}
-\large{Suppose that the available coins are in the denominations that are
-powers of $c$, i.e., the denominations are $c^0$, $c^1$,\dots, $c^k$ for
-some integers $c > 1$ and $k \geq 1$. Show that the greedy algorithm
-always yields an optimal solution.}
-...
+\subsubsection*{Proving the optimal solution}
+\noindent Since our set of coin denominators $S$ are sorted in decreasing
+order, we count $c$ the number of times
+\\\\
+\noindent \large{\textbf{b} Suppose that the available coins are in the
+denominations that are powers of $c$, i.e., the denominations are $c^0$,
+$c^1$,\dots, $c^k$ for some integers $c > 1$ and $k \geq 1$. Show that
+the greedy algorithm always yields an optimal solution.}
+% think c-nary representation, DiMS book as reference!
+For any set of coin denominations given by $c^0$, $c^1$,\dots, $c^k$, where
+$c > 1$ and $k \geq 1$, we observe that this forms the basis of a number
+system. That is, the sum of all $c^i$ plus $1$ is equal to $c^{i+1}$, from
+which it then follows that we can produce any number using a combination of
+these denominators.
+
+More formally, we state that
+\begin{align}
+	\sum_{i=0}^{j} c{_i}^{j} + 1 = c^{j+1}
+\end{align}
+And since we know that we can produce any number bounded by $c^k$, we must
+now show that we can produce any number above this bound. We do this
+inductively giving the base case
+\begin{align}
+	c^k + 1 &= c^0 + c^1 + \dots + c^k + 1\\
+	&= 2c^0 + c^1 + \dots + c^k
+\end{align}
+which is above the bound previously mentioned bound, yet is still given by a
+combination of the denominators. As we examine the inductive step, we observe
+that we are simply counting on top, and adding this count to as coefficients
+on any $c^i$, where $0 \leq i \leq k$, as shown below.
+\begin{align}
+	c^{k+1} &= \sum_{i=0}^{k}{a_i c_i} + ?\\
+	&= \sum_{i=0}^{k+1}{a_i c_i} \nonumber
+	\quad \text{, where $a_i$ is the amount we have of $c_i$}
+\end{align}
+It then follows by the induction, that we can produce any number.
 
 \subsubsection*{A set that fails}
 \large{Give a set of coin denominations for which the greedy algorithm
