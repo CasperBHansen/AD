@@ -80,9 +80,9 @@ subsequence of a given input string. For example, given the input
 running time of your algorithm?}
 
 \subsubsection*{Algorithm}
+We define a function \texttt{LSP}, such that for a string $S$ of length $n$
+yields the longest subsequence palindrome, or in short \textit{LSP}.
 
-We notice, that the problem of finding the Longest Substring Palindrome ($LSP$), can be solved recursively by noticing the following. \\
-On a string $S$ og length $n$ and $LSP(S) = P$: \\
 if
 \begin{align*}
 S[1] = S[n]
@@ -118,21 +118,33 @@ This gives us the naive recursive algorithm
 	    out = S[1], LSP(S[$2 \cdots n-1$]), S[1] \\
 		\Return out
 	}	
-	$pal\_1 =$ LSP(S[$1 \cdots n-1$]) \\
-	$pal\_2 =$ LSP(S[$2 \cdots n$) \\
-	\Return longest(pal\_1, pal\_2)
+	$pal_1 =$ LSP(S[$1 \cdots n-1$]) \\
+	$pal_2 =$ LSP(S[$2 \cdots n$]) \\
+	\Return longest($pal_1$, $pal_2$)
 \end{algorithm}
 
 \noindent
-The above pseudo-code can be proven to run in exponential time, which is easily observed by noticing that the number of subproblems doubles at every recursive call, since we do not know which of $pal\_1$ and $pal\_2$ is the longest before doing the computation, and that the size of the subproblems only decreases by one. Instead we can use dynamic programming a memorization or, as we will now, do a bottoms up approach.
+The above pseudo-code can be proven to run in exponential time, which is
+easily observed by noticing that the number of subproblems doubles at every
+recursive call, since we do not know which of $pal_1$ and $pal_2$ is the
+longest before doing the computation, and that the size of the subproblems
+only decreases by one. Instead we can use dynamic programming a memorization
+or, as we will now, do a bottoms up approach.
 
 \subsubsection*{Using dynamic programming}
-
-We notice that we in the pseudocode above, need to compute overlapping subproblems of of all the subarrays of S. Looking at the smallest substrings $LSP(S[i]) \mid i \in {1,\cdots, n}$ it is trivially a palindrome. Going to the case of more than one object LSP(S[$i \cdots k$]). Since we do the calculations in the bottoms up fashion, we have already calculated LSP(S[$i \cdots k-1$]) and LSP(S[$i+1 \cdots k$]). Each LSP call is constant. Making the analysis easy.
+We notice that we in the pseudocode above, need to compute overlapping
+subproblems of of all the subarrays of S. Looking at the smallest substrings
+$LSP(S[i]) \mid i \in {1,\cdots, n}$ it is trivially a palindrome. Going to
+the case of more than one object LSP(S[$i \cdots k$]). Since we do the
+calculations in the bottoms up fashion, we have already calculated
+LSP(S[$i \cdots k-1$]) and LSP(S[$i+1 \cdots k$]). Each LSP call is constant.
+Making the analysis easy.
 
 \subsubsection*{Analysis}
-
-Having calculated LSP(S), we know that each substring of length $l$ less than the length of S, is called $l$ times more. So that when we do the trivial calculation of size 1, we have n of these calls. Thus the number of LSP calls is always (best or worse case) given by the sum
+Having calculated LSP(S), we know that each substring of length $l$ less than
+the length of S, is called $l$ times more. So that when we do the trivial
+calculation of size 1, we have n of these calls. Thus the number of LSP calls
+is always (best or worse case) given by the sum.
 \begin{align*}
 \sum_{i = 1}^n i &= \frac{n(n+1)}{2} \\
 &= \Theta(n^2)
