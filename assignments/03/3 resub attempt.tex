@@ -134,8 +134,9 @@ or, as we will now, do a bottoms up approach.
 \subsubsection*{Using dynamic programming}
 We notice that we in the pseudocode above, need to compute overlapping
 subproblems of of all the subarrays of S. Looking at the smallest substrings
-$LSP(S[i]) \mid i \in {1,\cdots, n}$ it is trivially a palindrome. Going to
-the case of more than one object LSP(S[$i \cdots k$]). Since we do the
+$LSP(S[i]) \mid i \in \{1,\cdots, n\}$ it is trivially a palindrome. Going to
+the case of more than one object, from arbitrary indices $i$, and $k$, LSP(S[$i \cdots k$])
+$\mid i \in \{1, \cdots, n-k\}, k \in \{ i, \cdots, n \}$. Since we do the
 calculations in the bottoms up fashion, we have already calculated
 LSP(S[$i \cdots k-1$]) and LSP(S[$i+1 \cdots k$]). Each LSP call is constant.
 Making the analysis easy.
