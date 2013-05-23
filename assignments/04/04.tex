@@ -179,10 +179,10 @@ does not yield an optimal solution. Your set should include a penny, so
 that there is a solution for every value of $n$.}
 \\\\
 For any set of coin denominations
-$\{d \in \mathbb{Z}^{+} : d_i | d_{i+1}\}$, we must be able to produce an
-optimal solution, because we cannot make any greedy choice that violates an
-optimal solution of the following subproblem. If such a set of coin
-denominations should not follow this definition, then we cannot maintain
+$\{d \in \mathbb{Z}^{+} : d_i | d_{j}\}$, where $i < j$, we must be able to
+produce an optimal solution, because we cannot make any greedy choice that
+violates an optimal solution of the following subproblem. If such a set of
+coin denominations should not follow this definition, then we cannot maintain
 that the algorithm always yields an optimal solution. Ie. given the set
 $d = \{36, 20, 1\}$ of coin denominations, and the number of cents $n = 40$,
 then the algorithm would produce the non-optimal solution $\{36, 1, 1, 1, 1\}$
