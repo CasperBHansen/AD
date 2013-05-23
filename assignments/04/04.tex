@@ -174,17 +174,68 @@ choice fails to produce an optimal solution.
 \large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
 % move (a) down here, and just describe in (a) instead?
+\\\\
 ...
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKw{KwDownTo}{down to}
-	
-	\Input{...}
-	\Output{...}
+	\SetKw{Nil}{NIL}
+	\SetKwFunction{Coin}{Coin}
+
+	\Input{A sequence $S$ of coin denominators, sorted in decreasing order,
+and a number $n$ of cents. To avoid a global variable we pass a cache $table$
+in each recursive call.}
+	\Output{An ordered sequence of pairs, where the first element in each pair
+denotes the denominator by its index in $S$, and the second element denotes
+the amount required of that coin denominator.}
 	\BlankLine
 	
-	\Return $0$	
+	\If{$table = $ \Nil}
+	{
+		$table$ is created as a new hash table.
+	}
+
+	\uIf{$n < S[1]$}
+	{
+		\Return An array of length $n$ filled with $1$'s
+	}
+	\uElseIf{$n$ is in $S$}
+	{
+		\Return [$n$]
+	}
+	\Else
+	{
+		s = $n + 1$\\
+		c = []
+		
+		\For{$i = 0$ \KwTo $n - 1$}
+		{
+			\eIf{$i + 1$ is in the $table.keys$}
+			{
+				$a = table[i+1]$
+			}
+			{
+				$a = $ \Coin{$S$, $i + 1$, $table$}\\
+				$table[i+1] = a$
+			}
+			\eIf{$n - 1 - i$ is in the $table.keys$}
+			{
+				$b = table[n - 1 - i]$
+			}
+			{
+				$b = $ \Coin{$S$, $n - 1 - i$, $table$}\\
+				$table[n - 1 - i] = b$
+			}
+			$l = a.length + b.length$
+			\If{$l < s$}
+			{
+				$s = l$\\
+				$c = a + b$
+			}
+		}
+	}
+	\Return $c$
 \end{algorithm}
 ...
 
