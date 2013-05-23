@@ -126,11 +126,12 @@ denominations that are powers of $c$, i.e., the denominations are $c^0$,
 $c^1$,\dots, $c^k$ for some integers $c > 1$ and $k \geq 1$. Show that
 the greedy algorithm always yields an optimal solution.}
 % think c-nary representation, DiMS book as reference!
+\\\\
 For any set of coin denominations given by $c^0$, $c^1$,\dots, $c^k$, where
 $c > 1$ and $k \geq 1$, we observe that this forms the basis of a number
-system. That is, the sum of all $c^i$ plus $1$ is equal to $c^{i+1}$, from
-which it then follows that we can produce any number using a combination of
-these denominators.
+system. That is, the sum of all $c^i$, for $0 \leq i \leq k$, plus $1$ is
+equal to $c^{i+1}$, from which it then follows that we can produce any number
+using a combination of these denominators.
 
 More formally, we state that
 \begin{align}
@@ -148,9 +149,8 @@ combination of the denominators. As we examine the inductive step, we observe
 that we are simply counting on top, and adding this count to as coefficients
 on any $c^i$, where $0 \leq i \leq k$, as shown below.
 \begin{align}
-	c^{k+1} &= \sum_{i=0}^{k}{a_i c_i} + ?\\
-	&= \sum_{i=0}^{k+1}{a_i c_i} \nonumber
-	\quad \text{, where $a_i$ is the amount we have of $c_i$}
+	c^{k+1} &= (c - 1)\sum_{i=0}^{k}{c^i} + 1\\
+	&= \sum_{i=0}^{k+1}{c^i} \nonumber
 \end{align}
 It then follows by the induction, that we can produce any number.
 
@@ -158,11 +158,22 @@ It then follows by the induction, that we can produce any number.
 \large{Give a set of coin denominations for which the greedy algorithm
 does not yield an optimal solution. Your set should include a penny, so
 that there is a solution for every value of $n$.}
-...
+\\\\
+For any set of coin denominations
+$\{d \in \mathbb{Z}^{+} : d_i | d_{i+1}\}$, we must be able to produce an
+optimal solution, because we cannot make any greedy choice that violates an
+optimal solution of the following subproblem. If such a set of coin
+denominations should not follow this definition, then we cannot maintain
+that the algorithm always yields an optimal solution. Ie. given the set
+$d = \{36, 20, 1\}$ of coin denominations, and the number of cents $n = 40$,
+then the algorithm would produce the non-optimal solution $\{36, 1, 1, 1, 1\}$
+where an optimal solution would actually be $\{20, 20\}$ - hence the greedy
+choice fails to produce an optimal solution.
 
 \subsubsection*{An $O(nk)$-time algorithm}
 \large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
+% move (a) down here, and just describe in (a) instead?
 ...
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
