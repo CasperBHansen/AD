@@ -179,7 +179,7 @@ does not yield an optimal solution. Your set should include a penny, so
 that there is a solution for every value of $n$.}
 \\\\
 For any set of coin denominations
-$\{d \in \mathbb{Z}^{+} : d_i | d_{j}\}$, where $i < j$, we must be able to
+$\{d \in \mathbb{Z}^{+} : d_i | d_{j}\}$, where $1 < i < j$, we must be able to
 produce an optimal solution, because we cannot make any greedy choice that
 violates an optimal solution of the following subproblem. If such a set of
 coin denominations should not follow this definition, then we cannot maintain
@@ -192,9 +192,6 @@ choice fails to produce an optimal solution.
 \subsubsection*{An $O(nk)$-time algorithm}
 \large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
-% move (a) down here, and just describe in (a) instead?
-\\\\
-...
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
@@ -256,7 +253,6 @@ the amount required of that coin denominator.}
 	}
 	\Return $c$
 \end{algorithm}
-...
 
 %========== optional ==========%
 
