@@ -118,8 +118,27 @@ the amount required of that coin denominator.}
 \end{algorithm}
 
 \subsubsection*{Proving the optimal solution}
-\noindent Since our set of coin denominators $S$ are sorted in decreasing
-order, we count $c$ the number of times
+\noindent The above pseudo-code describes procedure of, on a given amount 
+of money denoted by $n$, make the greedy choice by choosing the largest 
+possible coin that's smaller than $n$. \\
+The algorithm does not work for any choice of denominations, as will be 
+shown in sub-problem c. However, it does work for this specific set of 
+coins. The reason it works for this set of coins, is not very easy to 
+see. \\
+Any given amount of money is given by linear combinations of the coins. 
+So an amount of money $y$ is given by.
+\begin{align*}
+y &= x_0 + 5x_1 + 10x_2 +25x_3
+\end{align*}
+Any value of $y < 5$, it is trivially seen, that only the first coin (the
+penny) can be used. with $5 \leq y < 10$, it can also easily be seen that
+one coin of five (the nickle) must be used, reducing the problem to size
+$y < 5$ again. For values $10 \leq y < 25$ it is again pretty easy to see
+that 10 (the dime) being a multiple of 5, must be part of the result. \\
+For values above 25 which is not a multiple of either 5 or 10 alone, but 
+linear combinations of both, the argument is not so easy. since a value 
+of size 50, is two times the problem of 25, we only need to check the 
+values of $\{ 26, 27, \cdots, 48, 49 \}$.
 \\\\
 \noindent \large{\textbf{b} Suppose that the available coins are in the
 denominations that are powers of $c$, i.e., the denominations are $c^0$,
