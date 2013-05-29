@@ -129,15 +129,19 @@ So an amount of money $y$ is given by.
 \begin{align*}
 y &= x_0 + 5x_1 + 10x_2 +25x_3
 \end{align*}
-Any value of $y < 5$, it is trivially seen, that only the first coin (the
-penny) can be used. with $5 \leq y < 10$, it can also easily be seen that
-one coin of five (the nickle) must be used, reducing the problem to size
-$y < 5$ again. For values $10 \leq y < 25$ it is again pretty easy to see
-that 10 (the dime) being a multiple of 5, must be part of the result. \\
-For values above 25 which is not a multiple of either 5 or 10 alone, but 
-linear combinations of both, the argument is not so easy. since a value 
-of size 50, is two times the problem of 25, we only need to check the 
-values of $\{ 26, 27, \cdots, 48, 49 \}$.
+Suppose that the dime isn't in the set of denominations $S$, that is $S' =
+S{\ }\backslash \{10\}$. We see that the set $S'$ is purely based on powers
+of 5. For such a set $S'$, we formally prove the optimal solution in (b),
+which we will then refer to - we set $c=5$ and $k=2$ for this particular case.
+% Any value of $y < 5$, it is trivially seen, that only the first coin (the
+% penny) can be used. with $5 \leq y < 10$, it can also easily be seen that
+% one coin of five (the nickle) must be used, reducing the problem to size
+% $y < 5$ again. For values $10 \leq y < 25$ it is again pretty easy to see
+% that 10 (the dime) being a multiple of 5, must be part of the result. \\
+% For values above 25 which is not a multiple of either 5 or 10 alone, but 
+% linear combinations of both, the argument is not so easy. since a value 
+% of size 50, is two times the problem of 25, we only need to check the 
+% values of $\{ 26, 27, \cdots, 48, 49 \}$.
 \\\\
 \noindent \large{\textbf{b} Suppose that the available coins are in the
 denominations that are powers of $c$, i.e., the denominations are $c^0$,
