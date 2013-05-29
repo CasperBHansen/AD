@@ -136,21 +136,11 @@ which we will then refer to - we set $c=5$ and $k=2$ for this particular case.
 Note that a dime is simply another way of expressing two nickels, that is to
 say that adding the dime back into the set of denominations doesn't hinder
 nor lessens an optimal solution, rather in strengthens it.
-% Any value of $y < 5$, it is trivially seen, that only the first coin (the
-% penny) can be used. with $5 \leq y < 10$, it can also easily be seen that
-% one coin of five (the nickle) must be used, reducing the problem to size
-% $y < 5$ again. For values $10 \leq y < 25$ it is again pretty easy to see
-% that 10 (the dime) being a multiple of 5, must be part of the result. \\
-% For values above 25 which is not a multiple of either 5 or 10 alone, but 
-% linear combinations of both, the argument is not so easy. since a value 
-% of size 50, is two times the problem of 25, we only need to check the 
-% values of $\{ 26, 27, \cdots, 48, 49 \}$.
 \\\\
 \noindent \large{\textbf{b} Suppose that the available coins are in the
 denominations that are powers of $c$, i.e., the denominations are $c^0$,
 $c^1$,\dots, $c^k$ for some integers $c > 1$ and $k \geq 1$. Show that
 the greedy algorithm always yields an optimal solution.}
-% think c-nary representation, DiMS book as reference!
 \\\\
 For any set of coin denominations given by $c^0$, $c^1$,\dots, $c^k$, where
 $c > 1$ and $k \geq 1$, we observe that this forms the basis of a number
