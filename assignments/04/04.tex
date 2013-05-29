@@ -193,6 +193,7 @@ we then remove it from the set $S$. Doing so leaves a set where $C_h$ is
 abscent, which makes another coin the most valuable, which in turn is the
 next best choice, proving the optimal substructure property.
 
+\newpage
 \subsubsection*{A set that fails}
 \large{Give a set of coin denominations for which the greedy algorithm
 does not yield an optimal solution. Your set should include a penny, so
@@ -212,8 +213,26 @@ choice fails to produce an optimal solution.
 \subsubsection*{An $O(nk)$-time algorithm}
 \large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
-\\
-% needs to be rewritten ..
+\\\\
+As the algorithm given in (a) runs in $O(nk)$-time, as we will prove now, we
+simply refer to this algorithm.
+
+On lines 1 through 3 we simply initialize some data, all of which takes
+constant time $\Theta(1)$. $k$ denotes the current index of $S$ we are
+considering to add to the result set, and we set this to be the first index
+initially. $c$ denotes the amount we are collecting of a particular index of
+$S$, that is how many need want of $S[k]$ in our result set. The \texttt{
+while}-loop on lines 4 through 15 contributes $O(nk)$-time (note that when we
+$k$ here we aren't referring to the algorithms internal variable, but rather
+the length of $S$), as it run at most $k$ iterations. To see why it runs in
+$O(nk)$-time, note that $k$ (the conditional termination variable) is only
+incremented when certain conditions are true. Lines 5-7 collects one of $S[k]$
+if $n \geq S[k]$, and simply reiterates this until $n < S[k]$, hence the
+$O(nk)$ contribution of the \texttt{while}-loop. Whenever $n$ becomes less
+than $S[k]$ an iteration over the $k$'s is done, and so we add the collected
+coins to the set on lines 9-12, and increment $k$ on line 13. Line 16 simply
+returns the result set.
+
 
 %========== optional ==========%
 
