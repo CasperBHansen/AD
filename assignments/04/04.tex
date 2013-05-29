@@ -78,19 +78,19 @@ algorithm yields an optimal solution.}
 
 \subsubsection*{Algorithm}
 \noindent We will assume that the sequence $S$ given in the following
-algorithm is sorted in decreasing order before being passed as an
-argument. Should we need to make up for this assumption, ... yada yada
+algorithm is sorted in decreasing order before being passed as an argument.
 
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKw{KwDownTo}{down to}
+	\SetKwFunction{Coin}{Coin}
 	
-	\Input{A sequence $S$ of coin denominators, sorted in decreasing order,
-and a number $n$ of cents.}
+	\Input{An array $S$ of coin denominators, sorted in decreasing order, and
+an integer $n$ of cents.}
 	\Output{An ordered sequence of pairs, where the first element in each pair
-denotes the denominator by its index in $S$, and the second element denotes
-the amount required of that coin denominator.}
+denotes the denominator in $S$, and the second element denotes the amount
+required of that coin denominator.}
 	\BlankLine
 	
 	$k = 1$\\
@@ -107,14 +107,13 @@ the amount required of that coin denominator.}
 		{
 			\If{$c \neq 0$}
 			{
-				$A$.append( ($k$, $c$) )\\
+				$A$.append( ($S[k]$, $c$) )\\
 			}
 			$c = 0$\\
 			$k = k + 1$
 		}
 	}
-	
-	\Return $A$	
+	\Return $A$
 \end{algorithm}
 
 \subsubsection*{Proving the optimal solution}
@@ -154,13 +153,13 @@ using a combination of these denominators.
 
 More formally, we state that
 \begin{align}
-	\sum_{i=0}^{j} c{_i}^{j} + 1 = c^{j+1}
+	(c - 1)\sum_{i=0}^{k} c^i + 1 = c^{k+1}
 \end{align}
 And since we know that we can produce any number bounded by $c^k$, we must
 now show that we can produce any number above this bound. We do this
 inductively giving the base case
 \begin{align}
-	c^k + 1 &= c^0 + c^1 + \dots + c^k + 1\\
+	c^k + 1 &= c^0 + c^1 + \dots + c^{k-1} + 1\\
 	&= 2c^0 + c^1 + \dots + c^k
 \end{align}
 which is above the bound previously mentioned bound, yet is still given by a
@@ -171,7 +170,28 @@ on any $c^i$, where $0 \leq i \leq k$, as shown below.
 	c^{k+1} &= (c - 1)\sum_{i=0}^{k}{c^i} + 1\\
 	&= \sum_{i=0}^{k+1}{c^i} \nonumber
 \end{align}
-It then follows by the induction, that we can produce any number.
+It then follows by the induction, that we can produce any number since, for
+any $c$ we might choose and $k \geq 0$, and $ac^0$ can produce any number.
+
+Now that we have proved that we can produce any number using these denomitors
+for any value of $c$ and $k$, we will now extend this to prove that the greedy
+choice (locally optimal solution) always leaves a subproblem that exhibits the
+optimal substructure property.
+
+Consider the coin of highest value $C_h$ in the set $S$. Our algorithm makes
+the assumption that as long as we can choose $C_h$ (that is, we make a greedy
+choice), doing so yields a optimal substructure. Let's consider that this is
+not the case, and choosing a coin of lower value $C_l$. By the definition of
+the set $c^i | c^j$, where $i < j$, since the set is defined as powers of $c$.
+It then follows that any $C_l$ divides $C_h$, meaning that we can represent
+$C_h$ as $aC_l$, which contradicts the assumption that $C_l$ yields globally
+optimal solution, since we must use $a$ of coin $C_l$, whereas we only need
+one of $C_h$. This proves the greedy choice is always the best choice.
+
+Let us now assume that we have exhausted the amount of $C_h$ we can choose,
+we then remove it from the set $S$. Doing so leaves a set where $C_h$ is
+abscent, which makes another coin the most valuable, which in turn is the
+next best choice, proving the optimal substructure property.
 
 \subsubsection*{A set that fails}
 \large{Give a set of coin denominations for which the greedy algorithm
@@ -192,67 +212,8 @@ choice fails to produce an optimal solution.
 \subsubsection*{An $O(nk)$-time algorithm}
 \large{Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
-\begin{algorithm}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	\SetKw{KwDownTo}{down to}
-	\SetKw{Nil}{NIL}
-	\SetKwFunction{Coin}{Coin}
-
-	\Input{A sequence $S$ of coin denominators, sorted in decreasing order,
-and a number $n$ of cents. To avoid a global variable we pass a cache $table$
-in each recursive call.}
-	\Output{An ordered sequence of pairs, where the first element in each pair
-denotes the denominator by its index in $S$, and the second element denotes
-the amount required of that coin denominator.}
-	\BlankLine
-	
-	\If{$table = $ \Nil}
-	{
-		$table$ is created as a new hash table.
-	}
-
-	\uIf{$n < S[1]$}
-	{
-		\Return An array of length $n$ filled with $1$'s
-	}
-	\uElseIf{$n$ is in $S$}
-	{
-		\Return [$n$]
-	}
-	\Else
-	{
-		s = $n + 1$\\
-		c = []
-		
-		\For{$i = 0$ \KwTo $n - 1$}
-		{
-			\eIf{$i + 1$ is in the $table.keys$}
-			{
-				$a = table[i+1]$
-			}
-			{
-				$a = $ \Coin{$S$, $i + 1$, $table$}\\
-				$table[i+1] = a$
-			}
-			\eIf{$n - 1 - i$ is in the $table.keys$}
-			{
-				$b = table[n - 1 - i]$
-			}
-			{
-				$b = $ \Coin{$S$, $n - 1 - i$, $table$}\\
-				$table[n - 1 - i] = b$
-			}
-			$l = a.length + b.length$
-			\If{$l < s$}
-			{
-				$s = l$\\
-				$c = a + b$
-			}
-		}
-	}
-	\Return $c$
-\end{algorithm}
+\\
+% needs to be rewritten ..
 
 %========== optional ==========%
 
