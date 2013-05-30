@@ -216,29 +216,70 @@ $d = \{36, 20, 1\}$ of coin denominations, and the number of cents $n = 40$,
 then the algorithm would produce the non-optimal solution $\{36, 1, 1, 1, 1\}$
 where an optimal solution would actually be $\{20, 20\}$ - hence the greedy
 choice fails to produce an optimal solution.
-\\\\
+
+\newpage
 \noindent \large{\textbf{d} Give an $O(nk)$-time algorithm that makes change for any set of $k$
 different coin denominations, assuming that one of the coins is a penny.}
 \\\\
-% As the algorithm given in (a) runs in $O(nk)$-time, as we will prove now, we
-% simply refer to this algorithm.
-%
-% On lines 1 through 3 we simply initialize some data, all of which takes
-% constant time $\Theta(1)$. $k$ denotes the current index of $S$ we are
-% considering to add to the result set, and we set this to be the first index
-% initially. $c$ denotes the amount we are collecting of a particular index of
-% $S$, that is how many need want of $S[k]$ in our result set. The \texttt{
-% while}-loop on lines 4 through 15 contributes $O(nk)$-time (note that when we
-% $k$ here we aren't referring to the algorithms internal variable, but rather
-% the length of $S$), as it run at most $k$ iterations. To see why it runs in
-% $O(nk)$-time, note that $k$ (the conditional termination variable) is only
-% incremented when certain conditions are true. Lines 5-7 collects one of $S[k]$
-% if $n \geq S[k]$, and simply reiterates this until $n < S[k]$, hence the
-% $O(nk)$ contribution of the \texttt{while}-loop. Whenever $n$ becomes less
-% than $S[k]$ an iteration over the $k$'s is done, and so we add the collected
-% coins to the set on lines 9-12, and increment $k$ on line 13. Line 16 simply
-% returns the result set.
-
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKw{Nil}{NIL}
+	\SetKw{Or}{or}
+	\SetKw{Continue}{continue}
+	\SetKwFunction{Coin}{Coin}
+	
+	\Input{An array $S$ of coin denominators, sorted in decreasing order, and
+an integer $n$ of cents.}
+	\Output{An array of coin denominators, making up an optimal solution.}
+	\BlankLine
+	
+	\Coin($S$, $n$) \\
+	\Begin
+	{	
+	Let $t[1 \dots n, \Nil]$ be a new a new 2-dimensional array\\
+	
+	\For{$i = 1$ \KwTo $n+1$}
+	{
+		\For{$j = 0$ \KwTo $S.length$}
+		{
+			\uIf{$S[j] > i$} {\Continue}
+			\ElseIf{$t[i]$ == \Nil \Or $t[i - S[j]].length + 1 < t[i].length$}
+			{
+				\If{$t[i - S[j]] != 0$}
+				{
+					$t[i] = t[i - S[j]]$\\
+					$t[i].append(S[j])$
+				}
+			}
+		}
+	}	
+	
+	\Return $t[t.length-1]$
+	}
+\end{algorithm}
+\\
+On line 3 we initialize a 2-dimensional array that is $n \times 1$, where each
+of the $n$ along the columns holds an empty array, or \texttt{nil}-pointer.
+Line 4-14 we iterate over $n$, which contributes $O(n)$ time to the complexity
+of the algorithm, lines 5-13 iterates through $k$, although $k$ isn't directly
+referenced as a variable, but we see that this is the case as $j$ acts as an
+index into $S$, so $j$ iterates over the contents of $S$ which is of length
+$k$, which in turn makes $j$ an iterator over 1 through $k$, hence this loop
+contributes $O(k)$. Since these are nested, the overall complexity is $O(nk)$,
+as all inner loops contents take constant $\Theta(1)$-time. In the inner loop,
+on lines 6-7 we check whether or not we have exceeded the bounds of which we
+can continue to build the table for that particular index, if so, we break out
+of the loop and continue with the next $i$. If this is not the case, then we
+check on line 8 whether or not $t[i]$ is \texttt{nil}, if it is we must have
+just begun creating a table for the current $i$, or that we haven't yet
+exceeded the length of a previously calculated table (meaning that we do not
+need to continue building this table). If either of these are true, then we
+know we are still on the right track and lines 9-11 determines whether or not
+we can use the table stored in $t[i - S[j]]$ for our current table. If so, we
+set $t[i]$ to point to the table that is more suitable and append the next
+value that still fits. Line 16 simply returns the result, which is stored in
+the last index of $t$.
 
 %========== optional ==========%
 
