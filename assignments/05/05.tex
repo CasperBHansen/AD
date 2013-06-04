@@ -83,7 +83,21 @@ whose left and right children are height balanced and have heights that differ
 by at most 2, i.e., $|x.right.h - x.left.h| \leq 2$, and that alters the
 subtree rooted at $x$ to be height balanced. (Hint: Use rotations)}
 \\
-...
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwFunction{Balance}{Balance}
+	\BlankLine
+	
+	\Balance($T$) \\
+	\Begin
+	{
+		\If{$x.left.h - x.right.h > 1$}
+		{
+			
+		}
+	}
+\end{algorithm}
 \\\\
 \noindent \large{\textbf{c} \mdseries Using part (b), describe a recursive
 procedure \texttt{AVL-Insert($x$,$z$)} that takes a node $x$ within an AVL
