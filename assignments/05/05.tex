@@ -133,7 +133,7 @@ Describe a procedure \texttt{Balance}, which takes a subtree rooted at $x$
 whose left and right children are height balanced and have heights that differ
 by at most 2, i.e., $|x.right.h - x.left.h| \leq 2$, and that alters the
 subtree rooted at $x$ to be height balanced. (Hint: Use rotations)}
-\\
+\\\\
 As suggested by the problem text, we will assume that we have access to the
 functions \texttt{RotateRight} and \texttt{RotateLeft}, which performs right
 and left rotations on the binary tree, respectively.
@@ -224,17 +224,16 @@ $z$ into an AVL tree $T$, we call \texttt{AVL-Insert($T.root$,$z$)}.}
 			}
 		}
 	}
-\end{algorithm}
+\end{algorithm}\\
 The new node $z.key$ can either be less than, or greater than $x.key$, should
-it be equal then $z$ is a duplicate of $x$ and does not get added to the tree
-- this case is dealt with one lines 3-5. If $z.key < x.key$, then $z$ must
-belong on the left-hand side of the tree $x$, so we make the recursive call on
-the left child of $x$, which is simply a subtree. Should the left-hand side
-subtree of $x$ be \texttt{NIL}, then $z$ must belong in that spot, we then
-set the pointer $x.left$ to be the $z$ node, we ensure that balance is kept
-intact by calling \texttt{Balance} on $z$'s new parent, which is the lowest
-node in the tree that can have an imbalance introduced. The case for $z.key >
-x.key$ is symmetric.
+it be equal then $z$ is a duplicate of $x$ and does not get added to the tree.
+If $z.key < x.key$, then $z$ must belong on the left-hand side of the tree $x$,
+so we make the recursive call on the left child of $x$, which is simply a
+subtree. Should the left-hand side subtree of $x$ be \texttt{NIL}, then $z$
+must belong in that spot, we then set the pointer $x.left$ to be the $z$ node,
+we ensure that balance is kept intact by calling \texttt{Balance} on $z$'s new
+parent, which is the lowest node in the tree that can have an imbalance
+introduced. The case for $z.key > x.key$ is symmetric.
 
 \newpage
 \noindent \large{\textbf{d} \mdseries Show that \texttt{AVL-Insert}, run on an
