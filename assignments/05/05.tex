@@ -153,13 +153,25 @@ and left rotations on the binary tree, respectively.
 		{
 			\RotateLeft($x$)
 			
-			\If{$x.left.left - x.left.right > 1$}
+			\If{$x.left.left.h - x.left.right.h > 1$}
 			{
 				\RotateRight($x.left$)
 			}
+		
+			\Balance($x.left$)
 		}
 		
-		\Balance($x.left$)
+		\If{$x.left.h - x.right.h > 1$}
+		{
+			\RotateRight($x$)
+			
+			\If{$x.right.right.h - x.right.left.h > 1$}
+			{
+				\RotateRight($x.right$)
+			}
+			
+			\Balance($x.right$)
+		}
 	}
 \end{algorithm}
 \\\\
