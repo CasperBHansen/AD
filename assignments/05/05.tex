@@ -195,11 +195,17 @@ $z$ into an AVL tree $T$, we call \texttt{AVL-Insert($T.root$,$z$)}.}
 	\AVLInsert($x$, $z$) \\
 	\Begin
 	{
+		\If{$x.key = z.key$}{\Return}
+		
+		% there is a smarter and shorter way, storing the pointer, but I'll
+		% get back to it and revise it once everything else is done.
+		
 		\If{$z.key < x.key$}
 		{
 			\eIf{$x.left = $ \Nil}
 			{
 				$x.left = z$
+				\Balance($x$)
 			}
 			{
 				\AVLInsert($x.left$, $z$)
@@ -211,20 +217,45 @@ $z$ into an AVL tree $T$, we call \texttt{AVL-Insert($T.root$,$z$)}.}
 			\eIf{$x.right = $ \Nil}
 			{
 				$x.right = z$
+				\Balance($x$)
 			}
 			{
 				\AVLInsert($x.right$, $z$)
 			}
 		}
-		
-		\Balance($x$)
 	}
 \end{algorithm}
+The new node $z.key$ can either be less than, or greater than $x.key$, should
+it be equal then $z$ is a duplicate of $x$ and does not get added to the tree
+- this case is dealt with one lines 3-5. If $z.key < x.key$, then $z$ must
+belong on the left-hand side of the tree $x$, so we make the recursive call on
+the left child of $x$, which is simply a subtree. Should the left-hand side
+subtree of $x$ be \texttt{NIL}, then $z$ must belong in that spot, we then
+set the pointer $x.left$ to be the $z$ node, we ensure that balance is kept
+intact by calling \texttt{Balance} on $z$'s new parent, which is the lowest
+node in the tree that can have an imbalance introduced. The case for $z.key >
+x.key$ is symmetric.
 
+\newpage
 \noindent \large{\textbf{d} \mdseries Show that \texttt{AVL-Insert}, run on an
 $n$-node AVL tree, takes $O(lg n)$ time and performs $O(1)$ rotations.}
 \\
-...
+We know from (a) that the upper bound on the height of an AVL tree is bounded
+by $O(lg n)$. Knowing this, if we can show that our algorithm only traverses
+the tree $T$ downward until it terminates will show that an insert takes
+$O(lg n)$. The new node $z.key$ can either be less than, or greater than
+$x.key$, should it be equal then $z$ is a duplicate of $x$ and does not get
+added to the tree, in that case we simply return contributing $O(1)$ to the
+running time. Since each recursive call is called on a subtree of $x$, that is
+either the left-hand $x.left$ or right-hand $x.right$ subtrees, then it must
+follow that we cannot make more calls than the height of the tree $x.h$, which
+is $O(lg n)$.
+
+For the rotations, we simply observe that \texttt{AVLInsert} doesn't perform
+any rotations on its own, and \texttt{Balance}, which is only called once $z$
+has been added to the tree $T$, in which case no more recursive calls are made,
+does a constant number of rotations - at most 2, in fact. Proving that
+\texttt{AVLInsert} performs $O(1)$ rotations.
 
 
 %========== optional ==========%
