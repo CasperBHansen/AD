@@ -134,19 +134,32 @@ whose left and right children are height balanced and have heights that differ
 by at most 2, i.e., $|x.right.h - x.left.h| \leq 2$, and that alters the
 subtree rooted at $x$ to be height balanced. (Hint: Use rotations)}
 \\
+As suggested by the problem text, we will assume that we have access to the
+functions \texttt{RotateRight} and \texttt{RotateLeft}, which performs right
+and left rotations on the binary tree, respectively.
 \begin{algorithm}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwFunction{Balance}{Balance}
+	\SetKwFunction{RotateLeft}{RotateLeft}
+	\SetKwFunction{RotateRight}{RotateRight}
 	\BlankLine
 	
 	\Balance($T$) \\
 	\Begin
 	{
-		\If{$x.left.h - x.right.h > 1$}
+		% left side is too heavy
+		\If{$x.right.h - x.left.h > 1$}
 		{
+			\RotateLeft($x$)
 			
+			\If{$x.left.left - x.left.right > 1$}
+			{
+				\RotateRight($x.left$)
+			}
 		}
+		
+		\Balance($x.left$)
 	}
 \end{algorithm}
 \\\\
