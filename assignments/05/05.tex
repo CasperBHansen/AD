@@ -72,7 +72,64 @@ that $T.root$ points to the root node.}
 has height $O(lg n)$. (Hint: Prove that an AVL tree of height $h$ has at
 least $F_h$ nodes, where $F_h$ is the $h$th fibonacci number.)}
 \\
-...
+
+\subsubsection*{a)}
+
+By induction, we will hereby prove that the number of elements in an AVL tree of 
+depth $h$, is lower bounded by the h'th Fibonacci number $F_h$. Vi first note 
+that in order to be sure we lower bound every possible tree, we must look at 
+the smallest possible AVL tree of arbitrary height. In order to achieve this,
+we need to assume that the difference in height between subtrees, are as big
+as possible.\\[5pt]
+
+\textbf{Base cases} \\[5pt]
+
+\noindent
+By definition, the zero'th and first Fibonacci is 0 and 1 respectivly, 
+corresponding to the empty AVL tree with height 0 and an AVL tree with 1 
+element and thus height 1. Using the Fibonacci relation $F_n = F_{n-1} + F_{n-2}$
+, the second Fibonacci number is then 1 and adding an element now yields a tree 
+of height 2, as the top of the tree is full. Since the second Fibonacci number 
+still lower bounds the height of the tree, the base case does hold.\\[5pt]
+
+\textbf{Inductive step}\\[5pt]
+
+\noindent
+At every level of height i of an AVL tree with $\lambda_i$ elements, the height 
+is one higher than its deepest subtree, and maximizing the allowed difference,
+the other subtree must be of height two less than height i. By the inductive 
+hypothesis, the number of elements of subtrees is given by Fibonacci number $i-1$
+and $i-2$, thus the number of elements is number of elements of the subtrees plus
+itself.
+\begin{align*}
+\lambda_i &= F_{i-1} + F_{i-2} + 1 \\
+          &< F_{i-1} + F_{i-2} = F_i \Rightarrow \\
+          \lambda_i &= \Omega (F_i) \Rightarrow \\
+\end{align*}
+\hfill $\square$
+
+We know that the n'th Fibonacci number can be calculated using the Golden Ration
+in the relation \\
+
+\begin{align*}
+F_n =  \left\lfloor \frac{\phi^n}{\sqrt{5}} + \frac{1}{2} \right\rfloor
+\end{align*}
+
+We can omit the floor function since it only counts as a constant decimal 
+difference, aswell as all the other constants and lower order terms. We get:
+
+\begin{align*}
+\lambda_i &= \Omega \left( \phi^n \right)
+\end{align*}
+
+\noindent
+Taking the natural logarithm and shifting the asymptotic growth, we get:
+
+\begin{align*}
+n = O(\ln \lambda_i)
+\end{align*}
+
+\hfill $\square$
 \\\\
 \noindent \large{\textbf{b} \mdseries To insert into an AVL tree, we first
 place a node into the appropriate place in binary search tree order.
