@@ -174,7 +174,8 @@ and left rotations on the binary tree, respectively.
 		}
 	}
 \end{algorithm}
-\\\\
+
+\newpage
 \noindent \large{\textbf{c} \mdseries Using part (b), describe a recursive
 procedure \texttt{AVL-Insert($x$,$z$)} that takes a node $x$ within an AVL
 tree and a newly created node $z$ (whose key has already been filled in), and
@@ -183,9 +184,43 @@ the root of an AVL tree. As in \texttt{Tree-Insert} from section 12.3, assume
 that $z.key$ has already been filled in and that $z.left =$ \texttt{NIL} and
 $z.right =$ \texttt{NIL}; also assume that $z.h = 0$. Thus, to insert the node
 $z$ into an AVL tree $T$, we call \texttt{AVL-Insert($T.root$,$z$)}.}
-\\
-...
-\\\\
+\begin{algorithm}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwFunction{AVLInsert}{AVLInsert}
+	\SetKwFunction{Balance}{Balance}
+	\SetKw{Nil}{NIL}
+	\BlankLine
+	
+	\AVLInsert($x$, $z$) \\
+	\Begin
+	{
+		\If{$z.key < x.key$}
+		{
+			\eIf{$x.left = $ \Nil}
+			{
+				$x.left = z$
+			}
+			{
+				\AVLInsert($x.left$, $z$)
+			}
+		}
+		
+		\If{$z.key > x.key$}
+		{
+			\eIf{$x.right = $ \Nil}
+			{
+				$x.right = z$
+			}
+			{
+				\AVLInsert($x.right$, $z$)
+			}
+		}
+		
+		\Balance($x$)
+	}
+\end{algorithm}
+
 \noindent \large{\textbf{d} \mdseries Show that \texttt{AVL-Insert}, run on an
 $n$-node AVL tree, takes $O(lg n)$ time and performs $O(1)$ rotations.}
 \\
